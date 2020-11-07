@@ -1,7 +1,4 @@
-# This workflow will build a Java project with Gradle
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
-
-name: Corona Sash
+name: Corona Dash
 
 on:
   push:
@@ -23,4 +20,16 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
+      env:
+        CD_DATABASE_PROTOCOL: ${{secrets.CD_DATABASE_PROTOCOL}}
+        CD_DATABASE_USER: ${{secrets.CD_DATABASE_USER}}
+        CD_DATABASE_PASSWORD: ${{secrets.CD_DATABASE_PASSWORD}}
+        CD_DATABASE_HOST: ${{secrets.CD_DATABASE_HOST}}
+        CD_DATABASE_NAME: ${{secrets.CD_DATABASE_NAME}}
+        CD_SOURCE_URL: ${{secrets.CD_SOURCE_URL}}
       run: ./gradlew build
+    - name: Upload artifacts to GitHub
+      uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: build/libs
