@@ -1,45 +1,88 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org ">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Coronavirus Dashboard</title>
+    <title>Sergei Litvinenko</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-<div class="container">
-    <div class="jumbotron">
-        <h1 class="display-4">Coronavirus Dashboard</h1>
-        <hr class="my-4">
-        <p class="lead">Total cases reported:</p>
-        <h1 class="display-4" th:text="${totalCasesReported}"></h1>
-        <hr class="my-4">
-        <p class="lead">Today cases:</p>
-        <h1 class="display-4" th:text="${totalIncrease}"></h1>
-        <hr class="my-4">
-        <p>Based on materials of Johns Hopkins Whiting School of Engineering.</p>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Sergei Litvinenko</a>
 
-    <table class="table table-hover">
-        <tr>
-            <th>Country</th>
-            <th style="text-align:center">Total cases reported</th>
-            <th style="text-align:center">New cases today</th>
-        </tr>
-        <tr th:each="row : ${rows}">
-            <td th:text="${row.country}"></td>
-            <td style="text-align:center" th:text="${row.totalCases}"></td>
-            <td style="text-align:center" th:text="${row.increasedBy}"></td>
-        </tr>
-    </table>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="featuresDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Features
+                </a>
+                <div class="dropdown-menu" aria-labelledby="featuresDropdown">
+                    <tr th:each="entryPoint : ${entryPoints}">
+                        <td>
+                            <a th:href="${entryPoint.relativeAddress}" th:text="${entryPoint.title}"
+                               class="dropdown-item"></a>
+                        </td>
+                    </tr>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="contactsDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Contact me
+                </a>
+                <div class="dropdown-menu" aria-labelledby="contactsDropdown">
+                    <tr th:each="contact : ${contacts}">
+                        <td>
+                            <a th:href="${contact.socialNetwork.baseUrl + contact.userIdentifier}"
+                               class="dropdown-item">
+                                <img th:src="${contact.socialNetwork.iconUrl}" width="32" height="32"/>
+                                <span th:text="${contact.socialNetwork.name}"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="alert alert-primary" role="alert">
+        <p class="display-4" th:text="${motd.message}">Quote</p>
+        <p align="right" class="display-6" th:text="${'— ' + motd.author + '.'}">Author</p>
+    </div>
 </div>
 
+<div class="container">
+    <div class="child">
+        <div class="jumbotron">
+            <h1 class="display-4">Here's what we got here:</h1>
+            <hr class="my-4">
+            <tr th:each="entryPoint : ${entryPoints}">
+                <td>
+                    <a th:href="${entryPoint.relativeAddress}" th:text="${entryPoint.title}"
+                       class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true"></a>
+                </td>
+            </tr>
+
+        </div>
+    </div>
+</div>
 
 </body>
 

@@ -8,5 +8,12 @@ corona-dash:
   server-port: ${CD_SERVER_PORT:8080}
   source-url: ${CD_SOURCE_URL}
 
+home:
+  telegram-name: Telegram
+  telegram-icon-url: /img/ic_telegram.svg
+  telegram-base-url: https://t.me/
+  telegram-user-identifier: svlitvinenko
+  telegram-visible-name: Sergei Litvinenko
+
 server:
   port: ${corona-dash.server-port}
