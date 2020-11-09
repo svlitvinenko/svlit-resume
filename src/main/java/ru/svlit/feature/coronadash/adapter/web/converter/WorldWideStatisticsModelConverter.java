@@ -1,15 +1,15 @@
 package ru.svlit.feature.coronadash.adapter.web.converter;
 
 import org.springframework.stereotype.Service;
+import ru.svlit.core.adapter.web.UnifiedModelAndView;
+import ru.svlit.core.adapter.web.UnifiedModelAndView.NavigationContent;
 import ru.svlit.feature.coronadash.adapter.web.entity.FlatRegionStatisticsRow;
 import ru.svlit.feature.coronadash.domain.Country;
 import ru.svlit.feature.coronadash.domain.StatisticsEntry;
 import ru.svlit.feature.coronadash.domain.World;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static java.util.Comparator.comparingInt;
@@ -22,19 +22,19 @@ public class WorldWideStatisticsModelConverter {
     private static final String MODEL_TOTAL_CASES_REPORTED = "totalCasesReported";
     private static final String MODEL_TOTAL_INCREASE = "totalIncrease";
 
-    public Map<String, Object> convert(World statistics) {
-        final Map<String, Object> model = new HashMap<>();
+    public UnifiedModelAndView convert(World statistics, NavigationContent navigationContent) {
+        final UnifiedModelAndView model = new UnifiedModelAndView("covid", navigationContent);
 
         final List<FlatRegionStatisticsRow> countryRows = getCountryRows(statistics).stream()
-                .sorted((a, b) -> (int)(b.getIncreasedBy() - a.getIncreasedBy()))
+                .sorted((a, b) -> (int) (b.getIncreasedBy() - a.getIncreasedBy()))
                 .collect(toUnmodifiableList());
-        model.put(MODEL_COUNTRY_ROWS, countryRows);
+        model.addObject(MODEL_COUNTRY_ROWS, countryRows);
 
         final long totalCasesReported = countryRows.stream().mapToLong(FlatRegionStatisticsRow::getTotalCases).sum();
-        model.put(MODEL_TOTAL_CASES_REPORTED, DecimalFormat.getNumberInstance().format(totalCasesReported));
+        model.addObject(MODEL_TOTAL_CASES_REPORTED, DecimalFormat.getNumberInstance().format(totalCasesReported));
 
         final long totalIncrease = countryRows.stream().mapToLong(FlatRegionStatisticsRow::getIncreasedBy).sum();
-        model.put(MODEL_TOTAL_INCREASE, DecimalFormat.getNumberInstance().format(totalIncrease));
+        model.addObject(MODEL_TOTAL_INCREASE, DecimalFormat.getNumberInstance().format(totalIncrease));
 
         return model;
     }
