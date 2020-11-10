@@ -12,26 +12,8 @@
     <div th:insert="fragment/header::header"></div>
 
     <div class="container">
-        <div class="alert alert-primary" role="alert">
-            <p class="display-4" th:text="${motd.message}">Quote</p>
-            <p align="right" class="display-6" th:text="${'— ' + motd.author + '.'}">Author</p>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="child">
-            <div class="jumbotron">
-                <h1 class="display-4">Here's what we got here:</h1>
-                <hr class="my-4">
-                <tr th:each="entryPoint : ${entryPoints}">
-                    <td>
-                        <a th:href="${entryPoint.relativeAddress}" th:text="${entryPoint.title}"
-                           class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true"></a>
-                    </td>
-                </tr>
-
-            </div>
-        </div>
+        <div th:insert="fragment/home/quote::quote"></div>
+        <div th:insert="fragment/home/achievements::achievements"></div>
     </div>
 </div>
 

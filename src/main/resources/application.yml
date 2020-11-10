@@ -14,6 +14,9 @@ home:
   telegram-base-url: https://t.me/
   telegram-user-identifier: svlitvinenko
   telegram-visible-name: Sergei Litvinenko
+  quotes-api-base-url: https://quotes.rest/qod
+  email-user-identifier: sv.litvinenko@outlook.com
+  email-icon-url: /img/ic_email.svg
 
 server:
   port: ${corona-dash.server-port}

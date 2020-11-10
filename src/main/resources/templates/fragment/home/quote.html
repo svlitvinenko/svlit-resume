@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="quote">
+    <div class="alert alert-primary" role="alert">
+        <h6 class="display-6" th:text="${motd.message}">Quote</h6>
+        <h5 align="right" class="display-5" th:text="${'— ' + motd.author + '.'}">Author</h5>
+    </div>
+</div>
+</body>
+</html>

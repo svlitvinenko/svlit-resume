@@ -25,3 +25,18 @@ body {
     grid-row-start: 2;
     grid-row-end: 3;
 }
+
+.carousel-item:after {
+  content:"";
+  display:block;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background:linear-gradient(transparent, rgba(0, 0, 0, 0.2) 65%, rgba(0, 0, 0, 0.7));
+}
+
+.bordered {
+    border: 4px cyan;
+}

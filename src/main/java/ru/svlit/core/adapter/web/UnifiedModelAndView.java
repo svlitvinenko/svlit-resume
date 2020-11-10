@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.web.servlet.ModelAndView;
 import ru.svlit.architecture.EntryPointDescription;
-import ru.svlit.feature.home.application.entity.Contact;
+import ru.svlit.entry.home.application.entity.Contact;
 
 import java.util.List;
 
