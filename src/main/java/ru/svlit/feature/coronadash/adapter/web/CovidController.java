@@ -11,7 +11,7 @@ import ru.svlit.feature.coronadash.application.port.exception.CouldNotFetchCoron
 import ru.svlit.feature.coronadash.application.port.in.GetCoronavirusDataUseCase;
 import ru.svlit.feature.coronadash.application.port.out.GetPersistedCoronavirusDataPort.NoPersistedCoronavirusDataException;
 import ru.svlit.feature.coronadash.domain.World;
-import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
+import ru.svlit.entry.home.application.port.in.GetNavigationContentUseCase;
 
 @Controller
 @RequestMapping("/covid")
