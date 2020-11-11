@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="sweater-messages-list">
+
+    <div th:insert="fragment/sweater/sweater-filter-form::sweater-filter-form"></div>
+
+    <div th:each="message : ${messages}">
+        <b th:text="${message.id}">ID</b>
+        <span class="brand" th:text="${message.text}">Message text</span>
+        <i th:text="${message.tag}">Tags</i>
+    </div>
+</div>
+</body>
+</html>
