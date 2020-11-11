@@ -9,7 +9,7 @@ import ru.svlit.entry.home.application.port.in.GetNavigationContentUseCase;
 
 @UseCase
 @RequiredArgsConstructor
-public class GetNavigationContentService implements GetNavigationContentUseCase {
+class GetNavigationContentService implements GetNavigationContentUseCase {
 
     private final GetEntryPointsUseCase getEntryPointsUseCase;
     private final GetContactsUseCase getContactsUseCase;
