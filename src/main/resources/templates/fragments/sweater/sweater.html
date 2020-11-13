@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments for Main</title>
+</head>
+<body>
+
+<div th:fragment="new-message">
+    <h2>New message:</h2>
+
+    <div>
+        <form method="post" th:action="@{/sweater}" enctype="multipart/form-data">
+            <input type="text" name="text" placeholder="Message">
+            <input type="text" name="tag" placeholder="Tag">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<div th:fragment="message-list (messages)">
+    <h2>Messages:</h2>
+    <div th:each="message : ${messages}">
+        <p>
+            <b th:text="${message.author.username} + ' sweated:'"></b>
+            <span th:text="${message.text}"></span>
+            <i th:text="${message.tag}"></i>
+        </p>
+    </div>
+</div>
+
+<div th:fragment="filter (value)">
+    <h3>Filter</h3>
+
+    <div>
+        <form method="get" th:action="@{/sweater}">
+            <input type="text" name="filter" placeholder="Tag" th:value="${value}">
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

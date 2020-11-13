@@ -10,7 +10,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 15
@@ -27,6 +26,7 @@ jobs:
         CD_DATABASE_HOST: ${{secrets.CD_DATABASE_HOST}}
         CD_DATABASE_NAME: ${{secrets.CD_DATABASE_NAME}}
         CD_SOURCE_URL: ${{secrets.CD_SOURCE_URL}}
+        SVLIT_DB_PATH: ${{secrets.SVLIT_DB_PATH}}
       run: ./gradlew build
     - name: Upload artifacts to GitHub
       uses: actions/upload-artifact@v2

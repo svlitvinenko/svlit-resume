@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/common/scripts.html :: resources(~{::title})">
+    <title>Sweater. Main</title>
+</head>
+<body>
+
+<div class="content">
+    <div th:insert="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
+    <div class="container my-5">
+        <div th:insert="fragments/sweater/sweater.html :: new-message"></div>
+        <div th:insert="fragments/sweater/sweater.html :: filter(value=${filter})"></div>
+        <div th:insert="fragments/sweater/sweater.html :: message-list(messages=${messages})"></div>
+    </div>
+</div>
+<div th:insert="fragments/common/footer.html :: footer"></div>
+
+<div th:insert="fragments/common/scripts.html :: scripts"></div>
+
+</body>
+</html>

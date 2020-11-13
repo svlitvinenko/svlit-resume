@@ -8,6 +8,10 @@ body {
     grid-template-rows: 1fr auto;
 }
 
+p {
+    font-family: Exo2-Regular, verdana;
+}
+
 .centered {
     position: absolute;
     top: 50%;
@@ -15,11 +19,9 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.header {
-}
+.header {}
 
-.content {
-}
+.content {}
 
 .footer {
     grid-row-start: 2;
@@ -27,16 +29,25 @@ body {
 }
 
 .carousel-item:after {
-  content:"";
-  display:block;
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  background:linear-gradient(transparent, rgba(0, 0, 0, 0.2) 65%, rgba(0, 0, 0, 0.7));
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.2) 65%, rgba(0, 0, 0, 0.7));
 }
 
 .bordered {
     border: 4px cyan;
+}
+
+@font-face {
+    font-family: Exo2-Regular;
+    src: url('../fonts/Exo2.ttf');
+}
+
+.brand {
+    font-family: Exo2-Regular, verdana;
 }
