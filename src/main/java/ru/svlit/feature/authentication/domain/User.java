@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Set;
+import java.util.UUID;
+
+import static java.util.Collections.emptySet;
 
 @Getter
 @ToString
@@ -55,5 +58,15 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isActive();
+    }
+
+    public static User unknown() {
+        return new User(
+                "-1",
+                "UFO",
+                UUID.randomUUID().toString(),
+                emptySet(),
+                false
+        );
     }
 }

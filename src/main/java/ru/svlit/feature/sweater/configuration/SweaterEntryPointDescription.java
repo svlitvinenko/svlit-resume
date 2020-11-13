@@ -6,6 +6,11 @@ import ru.svlit.architecture.annotation.EntryPoint;
 @EntryPoint
 class SweaterEntryPointDescription implements EntryPointDescription {
     @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
     public String getTitle() {
         return "Sweater";
     }

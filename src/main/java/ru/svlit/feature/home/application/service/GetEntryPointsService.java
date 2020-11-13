@@ -7,6 +7,8 @@ import ru.svlit.feature.home.application.port.in.GetEntryPointsUseCase;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @UseCase
 @RequiredArgsConstructor
 class GetEntryPointsService implements GetEntryPointsUseCase {
@@ -15,6 +17,6 @@ class GetEntryPointsService implements GetEntryPointsUseCase {
 
     @Override
     public List<EntryPointDescription> perform() {
-        return entryPointDescriptions;
+        return entryPointDescriptions.stream().filter(EntryPointDescription::isEnabled).collect(toList());
     }
 }

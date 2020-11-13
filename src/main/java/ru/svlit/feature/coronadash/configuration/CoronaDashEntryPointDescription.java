@@ -6,6 +6,11 @@ import ru.svlit.architecture.EntryPointDescription;
 @EntryPoint
 public class CoronaDashEntryPointDescription implements EntryPointDescription {
     @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
     public String getTitle() {
         return "COVID-19 Dashboard";
     }
