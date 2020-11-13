@@ -6,5 +6,5 @@ public interface CoronaDashConfiguration {
 
     Long getRefreshDelayMs();
 
-    String getDataBaseConnectionString();
+    String getDatabaseConnectionString();
 }

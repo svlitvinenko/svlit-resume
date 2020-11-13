@@ -27,7 +27,9 @@ class HomeController {
     @GetMapping
     public ModelAndView get() throws GetMessageOfTheDayUseCase.CouldNotGetQuoteException {
         final MessageOfTheDay messageOfTheDay = getMessageOfTheDayUseCase.perform();
-        final NavigationContent navigationContent = getNavigationContentUseCase.perform();
+        final NavigationContent navigationContent = getNavigationContentUseCase.perform(
+                new GetNavigationContentUseCase.GetNavigationContentCommand(true)
+        );
         final List<Achievement> achievements = getAchievementsUseCase.perform();
         return homePageFiller.fill(messageOfTheDay, navigationContent, achievements);
     }

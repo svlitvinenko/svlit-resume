@@ -1,4 +1,4 @@
-package ru.svlit.feature.sweater.adapter.persistence.datasource.model;
+package ru.svlit.feature.authentication.adapter.persistence;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -7,15 +7,19 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Set;
+
 @Getter
-@Document("messages")
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
-public class MessageModel {
+@Document(collection = "users")
+public class UserModel {
+
     @Id
     private final String id;
-    private final String text;
-    private final String tag;
-    private final String authorId;
+    private final String username;
+    private final String password;
+    private final Set<String> roles;
+    private final boolean isActive;
 }

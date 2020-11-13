@@ -9,6 +9,7 @@ import ru.svlit.architecture.annotation.WebAdapter;
 import ru.svlit.core.util.NavigationContent;
 import ru.svlit.core.util.UnifiedModelAndView;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
+import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase.GetNavigationContentCommand;
 import ru.svlit.feature.sweater.application.model.Message;
 import ru.svlit.feature.sweater.application.port.in.FindMessagesByTagUseCase;
 import ru.svlit.feature.sweater.application.port.in.FindMessagesByTagUseCase.FindMessagesByTagCommand;
@@ -16,6 +17,7 @@ import ru.svlit.feature.sweater.application.port.in.GetAllMessagesUseCase;
 import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase;
 import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase.EmptyMessageTextException;
 import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase.SubmitMessageCommand;
+import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase.UserNotFoundException;
 
 @WebAdapter
 @RequiredArgsConstructor
@@ -37,13 +39,15 @@ class SweaterController {
     }
 
     @PostMapping
-    public UnifiedModelAndView add(@RequestParam String text, @RequestParam String tag) throws EmptyMessageTextException {
+    public UnifiedModelAndView add(@RequestParam String text, @RequestParam String tag) throws EmptyMessageTextException, UserNotFoundException {
         submitMessageUseCase.submit(new SubmitMessageCommand(text, tag));
         return getViewForAllMessages();
     }
 
     private UnifiedModelAndView getViewForMessages(Iterable<Message> messages) {
-        final NavigationContent navigationContent = getNavigationContentUseCase.perform();
+        final NavigationContent navigationContent = getNavigationContentUseCase.perform(
+                new GetNavigationContentCommand(true)
+        );
         final UnifiedModelAndView modelAndView = new UnifiedModelAndView("sweater", navigationContent);
         modelAndView.addObject("messages", messages);
         return modelAndView;

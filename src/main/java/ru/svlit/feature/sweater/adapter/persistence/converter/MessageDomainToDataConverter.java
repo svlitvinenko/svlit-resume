@@ -11,7 +11,7 @@ public class MessageDomainToDataConverter {
                 message.getId(),
                 message.getText(),
                 message.getTag(),
-                message.getAuthor()
+                message.getAuthor().getId()
         );
     }
 }

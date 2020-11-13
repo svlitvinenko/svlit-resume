@@ -22,7 +22,7 @@
     <h2>Messages:</h2>
     <div th:each="message : ${messages}">
         <p>
-            <b th:text="${message.author} + ' sweated:'"></b>
+            <b th:text="${message.author.username} + ' sweated:'"></b>
             <span th:text="${message.text}"></span>
             <i th:text="${message.tag}"></i>
         </p>

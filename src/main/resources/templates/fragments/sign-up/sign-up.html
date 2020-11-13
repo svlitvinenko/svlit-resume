@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments for Login</title>
+</head>
+<body>
+
+<div th:fragment="form-sign-up">
+    <h2>Sign up:</h2>
+
+    <form th:action="@{/sign-up}" method="post">
+        <div><label>Username: <input type="text" name="username" placeholder="ThomasWayne"></label></div>
+        <div><label>Password: <input type="password" name="password" placeholder="iamBatman"></label></div>
+        <div><input type="submit" value="Sign Up"></div>
+    </form>
+
+    Already have an account? <a th:href="@{/login}">Sign in</a>.
+</div>
+
+<div th:fragment="errors (error_user_exists)">
+    <div th:if="${error_user_exists}">
+        <b>This username is already taken.</b>
+    </div>
+</div>
+
+</body>
+</html>

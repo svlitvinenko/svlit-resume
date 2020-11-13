@@ -19,12 +19,12 @@ public class GetAchievementsService implements GetAchievementsUseCase {
                 new Achievement(
                         "СберБанк Онлайн. Штрафы ГИБДД",
                         "Сервис поиска и оплаты штрафов ГИБДД с уведомлениями о новых начислениях",
-                        "/img/achievements/ill_achievement_penalty.jpeg"
+                        "/static/img/ill_achievement_penalty.jpeg"
                 ),
                 new Achievement(
                         "СберБанк Онлайн. Счета к оплате и балансы",
                         "MVP-версия продукта «Счета к оплате и балансы», положившая начало становлению объектной модели банка.",
-                        "/img/achievements/ill_achievement_penalty.jpeg"
+                        "/static/img/ill_achievement_penalty.jpeg"
                 )
         );
     }

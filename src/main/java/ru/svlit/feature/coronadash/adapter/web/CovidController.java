@@ -24,7 +24,9 @@ class CovidController {
     @GetMapping
     public ModelAndView covid() throws CouldNotFetchCoronavirusDataException, NoPersistedCoronavirusDataException {
         final World statistics = getCoronavirusDataUseCase.get();
-        final NavigationContent navigationContent = getNavigationContentUseCase.perform();
+        final NavigationContent navigationContent = getNavigationContentUseCase.perform(
+                new GetNavigationContentUseCase.GetNavigationContentCommand(true)
+        );
         return worldWideStatisticsModelConverter.convert(statistics, navigationContent);
     }
 }

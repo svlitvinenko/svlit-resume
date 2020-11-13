@@ -43,8 +43,9 @@
                     </div>
                 </li>
             </ul>
-            <div th:if="${navigationContent.userInfo.class.name == 'ru.svlit.core.util.SignedInUserInfo'}"
-                 th:insert="::sign-out (username=${navigationContent.userInfo.username})"></div>
+            <div th:if="${navigationContent.userInfo.class.name == 'ru.svlit.core.util.SignedInUserInfo'}">
+                <div th:insert="::sign-out (username=${navigationContent.userInfo.user.username})"></div>
+            </div>
 
             <div th:if="${navigationContent.userInfo.class.name == 'ru.svlit.core.util.GuestUserInfo'}"
                  th:insert="::sign-in-or-up"></div>
@@ -53,14 +54,14 @@
     </nav>
 </div>
 
-<form th:fragment="sign-out (username)" class="form-inline my-2 my-lg-0" action="/logout">
+<form th:fragment="sign-out (username)" class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
     <label th:text="${username}" class="mr-3">User</label>
     <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Log out</button>
 </form>
 
 <form th:fragment="sign-in-or-up" class="form-inline my-2 my-lg-0" action="/login">
-    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" th:name="@{/sign-in}">Sign in</button>
-    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" th:name="@{/sign-up}">Sign up</button>
+    <button class="btn btn-outline-secondary my-2 my-sm-0 mr-3" type="submit" th:name="@{/login}">Sign in</button>
+    <button class="btn btn-primary my-2 my-sm-0" type="submit" th:name="@{/sign-up}">Sign up</button>
 </form>
 
 </body>

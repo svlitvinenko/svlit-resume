@@ -15,7 +15,7 @@ public class PersistenceConfiguration {
 
     @Bean
     MongoClient provideMongoClient() {
-        final String connectionString = configuration.getDataBaseConnectionString();
+        final String connectionString = configuration.getDatabaseConnectionString();
         return MongoClients.create(connectionString);
     }
 }

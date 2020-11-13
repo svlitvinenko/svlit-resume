@@ -6,9 +6,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 public interface SubmitMessageUseCase {
-    void submit(SubmitMessageCommand command) throws EmptyMessageTextException;
+    void submit(SubmitMessageCommand command) throws EmptyMessageTextException, UserNotFoundException;
 
     class EmptyMessageTextException extends Exception {
+    }
+
+    class UserNotFoundException extends Exception {
     }
 
     @Getter
