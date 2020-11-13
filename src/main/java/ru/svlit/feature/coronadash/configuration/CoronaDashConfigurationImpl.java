@@ -19,9 +19,4 @@ class CoronaDashConfigurationImpl implements CoronaDashConfiguration {
     private String sourceUrl;
     private String databaseConnectionString;
     private Long refreshDelayMs;
-
-    @Override
-    public String getDatabaseConnectionString() {
-        return databaseConnectionString;
-    }
 }
