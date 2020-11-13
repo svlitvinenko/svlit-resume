@@ -31,17 +31,16 @@ public class GetMessageOfTheDayPortImpl implements GetMessageOfTheDayPort {
     }
 
     private MessageOfTheDay fetchMessageOfTheDay() throws CouldNotFetchQuoteException {
-        return new MessageOfTheDay("Test", "test");
-//        final QuoteApiModel quoteApiModel = restTemplate.getForObject(
-//                configuration.getQuotesApiBaseUrl(),
-//                QuoteApiModel.class
-//        );
-//
-//        if (quoteApiModel != null && quoteApiModel.getSuccess() != null) {
-//            final Quote quote = quoteApiModel.getContents().getQuotes().get(0);
-//            return new MessageOfTheDay(quote.getQuote(), quote.getAuthor());
-//        } else {
-//            throw new CouldNotFetchQuoteException();
-//        }
+        final QuoteApiModel quoteApiModel = restTemplate.getForObject(
+                configuration.getQuotesApiBaseUrl(),
+                QuoteApiModel.class
+        );
+
+        if (quoteApiModel != null && quoteApiModel.getSuccess() != null) {
+            final Quote quote = quoteApiModel.getContents().getQuotes().get(0);
+            return new MessageOfTheDay(quote.getQuote(), quote.getAuthor());
+        } else {
+            throw new CouldNotFetchQuoteException();
+        }
     }
 }
