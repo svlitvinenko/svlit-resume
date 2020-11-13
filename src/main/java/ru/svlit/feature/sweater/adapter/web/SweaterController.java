@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.svlit.architecture.annotation.WebAdapter;
-import ru.svlit.core.adapter.web.UnifiedModelAndView;
-import ru.svlit.core.adapter.web.UnifiedModelAndView.NavigationContent;
-import ru.svlit.entry.home.application.port.in.GetNavigationContentUseCase;
+import ru.svlit.core.util.NavigationContent;
+import ru.svlit.core.util.UnifiedModelAndView;
+import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 import ru.svlit.feature.sweater.application.model.Message;
 import ru.svlit.feature.sweater.application.port.in.FindMessagesByTagUseCase;
 import ru.svlit.feature.sweater.application.port.in.FindMessagesByTagUseCase.FindMessagesByTagCommand;
@@ -18,8 +18,8 @@ import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase.EmptyMe
 import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase.SubmitMessageCommand;
 
 @WebAdapter
-@RequestMapping("/sweater")
 @RequiredArgsConstructor
+@RequestMapping("/sweater")
 class SweaterController {
     private final GetNavigationContentUseCase getNavigationContentUseCase;
     private final GetAllMessagesUseCase getAllMessagesUseCase;
@@ -27,32 +27,30 @@ class SweaterController {
     private final SubmitMessageUseCase submitMessageUseCase;
 
     @GetMapping
-    public UnifiedModelAndView getMain() {
-        final NavigationContent navigationContent = getNavigationContentUseCase.perform();
-        final Iterable<Message> perform = getAllMessagesUseCase.perform();
-        final UnifiedModelAndView modelAndView = new UnifiedModelAndView("sweater", navigationContent);
-        modelAndView.addObject("messages", perform);
-        return modelAndView;
+    public UnifiedModelAndView getMain(@RequestParam(required = false) final String filter) {
+        if (filter != null && !filter.isBlank()) {
+            final Iterable<Message> filteredByTag = findMessagesByTagUseCase.findByTag(new FindMessagesByTagCommand(filter));
+            return getViewForMessages(filteredByTag);
+        } else {
+            return getViewForAllMessages();
+        }
     }
 
     @PostMapping
     public UnifiedModelAndView add(@RequestParam String text, @RequestParam String tag) throws EmptyMessageTextException {
         submitMessageUseCase.submit(new SubmitMessageCommand(text, tag));
-        return getMain();
+        return getViewForAllMessages();
     }
 
-    @PostMapping("/filter")
-    public UnifiedModelAndView filter(@RequestParam final String tag) {
-        final Iterable<Message> messagesToShow;
-        if (tag != null && !tag.isBlank()) {
-            messagesToShow = findMessagesByTagUseCase.findByTag(new FindMessagesByTagCommand(tag));
-        } else {
-            messagesToShow = getAllMessagesUseCase.perform();
-        }
-
+    private UnifiedModelAndView getViewForMessages(Iterable<Message> messages) {
         final NavigationContent navigationContent = getNavigationContentUseCase.perform();
         final UnifiedModelAndView modelAndView = new UnifiedModelAndView("sweater", navigationContent);
-        modelAndView.addObject("messages", messagesToShow);
+        modelAndView.addObject("messages", messages);
         return modelAndView;
+    }
+
+    private UnifiedModelAndView getViewForAllMessages() {
+        final Iterable<Message> messages = getAllMessagesUseCase.perform();
+        return getViewForMessages(messages);
     }
 }

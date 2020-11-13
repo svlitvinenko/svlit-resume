@@ -6,6 +6,8 @@ import ru.svlit.feature.sweater.application.model.Message;
 import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase;
 import ru.svlit.feature.sweater.application.port.out.SubmitMessagePort;
 
+import java.util.UUID;
+
 @UseCase
 @RequiredArgsConstructor
 class SubmitMessageService implements SubmitMessageUseCase {
@@ -16,8 +18,9 @@ class SubmitMessageService implements SubmitMessageUseCase {
     public void submit(final SubmitMessageCommand command) throws EmptyMessageTextException {
         final String text = getTextOrThrowEmptyMessageException(command.getText());
         final String tag = getTagOrDefault(command.getTag());
+        final String id = UUID.randomUUID().toString();
 
-        submitMessagePort.submit(new Message(text, tag));
+        submitMessagePort.submit(new Message(id, text, tag, "test"));
     }
 
     private String getTagOrDefault(String tag) {

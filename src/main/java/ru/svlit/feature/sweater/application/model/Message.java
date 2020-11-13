@@ -5,10 +5,10 @@ import lombok.*;
 @Getter
 @ToString
 @EqualsAndHashCode
-@AllArgsConstructor
 @RequiredArgsConstructor
 public class Message {
-    private Integer id;
+    private final String id;
     private final String text;
     private final String tag;
+    private final String author;
 }

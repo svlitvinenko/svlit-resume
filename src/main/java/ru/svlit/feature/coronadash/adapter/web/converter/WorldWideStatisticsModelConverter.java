@@ -1,8 +1,8 @@
 package ru.svlit.feature.coronadash.adapter.web.converter;
 
 import org.springframework.stereotype.Service;
-import ru.svlit.core.adapter.web.UnifiedModelAndView;
-import ru.svlit.core.adapter.web.UnifiedModelAndView.NavigationContent;
+import ru.svlit.core.util.UnifiedModelAndView;
+import ru.svlit.core.util.NavigationContent;
 import ru.svlit.feature.coronadash.adapter.web.entity.FlatRegionStatisticsRow;
 import ru.svlit.feature.coronadash.domain.Country;
 import ru.svlit.feature.coronadash.domain.StatisticsEntry;

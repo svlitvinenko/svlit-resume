@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-
-<head th:insert="fragment/scripts::scripts">
-    <title>Sweater</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/common/scripts.html :: resources(~{::title})">
+    <title>Sweater. Main</title>
 </head>
-
 <body>
 
 <div class="content">
-    <div th:insert="fragment/header::header"></div>
-
-    <div class="container">
-        <h1 class="display-3 brand">Sweat something!</h1>
-        <div th:insert="fragment/sweater/sweater-new-message::sweater-new-message"></div>
-
-        <h1 class="display-4 brand">Top sweats</h1>
-        <div th:insert="fragment/sweater/sweater-messages-list::sweater-messages-list"></div>
+    <div th:insert="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
+    <div class="container my-5">
+        <div th:insert="fragments/sweater/sweater.html :: new-message"></div>
+        <div th:insert="fragments/sweater/sweater.html :: filter(value=${filter})"></div>
+        <div th:insert="fragments/sweater/sweater.html :: message-list(messages=${messages})"></div>
     </div>
 </div>
+<div th:insert="fragments/common/footer.html :: footer"></div>
 
-<div th:insert="fragment/footer::footer"></div>
+<div th:insert="fragments/common/scripts.html :: scripts"></div>
 
 </body>
-
 </html>

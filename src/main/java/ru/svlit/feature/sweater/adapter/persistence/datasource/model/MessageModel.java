@@ -1,28 +1,19 @@
 package ru.svlit.feature.sweater.adapter.persistence.datasource.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import static javax.persistence.GenerationType.AUTO;
-
-@Data
-@Entity(name = "message")
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Document
+@ToString
+@EqualsAndHashCode
+@RequiredArgsConstructor
 public class MessageModel {
-    @Id
-    @GeneratedValue(strategy = AUTO)
-    private Integer id;
-    private String text;
-    private String tag;
-
-    public MessageModel(String text, String tag) {
-        this.text = text;
-        this.tag = tag;
-    }
+    private final String id;
+    private final String text;
+    private final String tag;
+    private final String author;
 }

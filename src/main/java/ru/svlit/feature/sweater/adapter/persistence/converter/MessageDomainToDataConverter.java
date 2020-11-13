@@ -10,7 +10,8 @@ public class MessageDomainToDataConverter {
         return new MessageModel(
                 message.getId(),
                 message.getText(),
-                message.getTag()
+                message.getTag(),
+                message.getAuthor()
         );
     }
 }

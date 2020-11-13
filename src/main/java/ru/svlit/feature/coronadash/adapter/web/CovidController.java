@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ru.svlit.core.adapter.web.UnifiedModelAndView.NavigationContent;
+import ru.svlit.core.util.NavigationContent;
 import ru.svlit.feature.coronadash.adapter.web.converter.WorldWideStatisticsModelConverter;
 import ru.svlit.feature.coronadash.application.port.exception.CouldNotFetchCoronavirusDataException;
 import ru.svlit.feature.coronadash.application.port.in.GetCoronavirusDataUseCase;
 import ru.svlit.feature.coronadash.application.port.out.GetPersistedCoronavirusDataPort.NoPersistedCoronavirusDataException;
 import ru.svlit.feature.coronadash.domain.World;
-import ru.svlit.entry.home.application.port.in.GetNavigationContentUseCase;
+import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 
 @Controller
 @RequestMapping("/covid")

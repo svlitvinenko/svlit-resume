@@ -8,6 +8,10 @@ body {
     grid-template-rows: 1fr auto;
 }
 
+p {
+    font-family: Exo2-Regular, verdana;
+}
+
 .centered {
     position: absolute;
     top: 50%;
