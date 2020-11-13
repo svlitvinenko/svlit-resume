@@ -16,6 +16,8 @@ import ru.svlit.feature.sweater.application.port.out.SubmitMessagePort;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.svlit.feature.authentication.domain.User.unknown;
+
 @PersistenceAdapter
 @RequiredArgsConstructor
 public class MessagesRepository implements GetAllMessagesPort, FindMessagesByTagPort, SubmitMessagePort {
@@ -48,7 +50,7 @@ public class MessagesRepository implements GetAllMessagesPort, FindMessagesByTag
     }
 
     private Message convertFromData(MessageModel messageModel) {
-        final User user = findUserByIdUseCase.findByUd(messageModel.getAuthorId()).orElseThrow();
+        final User user = findUserByIdUseCase.findByUd(messageModel.getAuthorId()).orElse(unknown());
         return messageDataToDomainConverter.convert(messageModel, user);
 
     }

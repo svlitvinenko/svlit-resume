@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments for Main</title>
+</head>
+<body>
+
+<table th:fragment="user-list (users, roles)" class="table table-hover">
+    <thead>
+    <tr>
+        <td><h5>Username</h5></td>
+        <td align="center" th:each="role : ${roles}"><h5 th:text="${role.name}"></h5></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td>
+            <a th:href="@{/user/{id}(id=${user.id})}" th:text="${user.username}"></a>
+        </td>
+        <td align="center" th:each="role : ${roles}">
+            <label>
+                <input type="checkbox" name="active" th:checked="${#lists.contains(user.roles, role)}" disabled>
+                <span th:text="${#lists.contains(user.roles, role)} ? 'Enabled' : 'Disabled'"
+                      th:class="${#lists.contains(user.roles, role)} ? 'text-success' : 'text-danger'"></span>
+            </label>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>
