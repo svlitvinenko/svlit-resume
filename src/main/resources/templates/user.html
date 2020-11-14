@@ -2,24 +2,25 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:insert="fragments/common/scripts.html :: resources(~{::title})">
-    <title>Admin Panel</title>
+    <title th:text="${user.username} + ' — Admin Panel'"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}">
 </head>
 
 <body>
 
+    <div class="page">
+        <div th:replace="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
 
-<div class="content">
-    <div th:insert="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
+        <main class="content">
+            <div class="container my-5">
+                <div th:insert="fragments/user/user.html :: user-details(user=${user}, roles=${roles})"></div>
+            </div>
+        </main>
 
-    <div class="container my-5">
-        <div th:insert="fragments/user/user.html :: user-details(user=${user}, roles=${roles})"></div>
+        <div th:replace="fragments/common/footer.html :: footer"></div>
     </div>
-</div>
 
-<div th:insert="fragments/common/footer.html :: footer"></div>
-
-<div th:insert="fragments/common/scripts.html :: scripts"></div>
+    <div th:insert="fragments/common/scripts.html :: scripts"></div>
 
 </body>
 

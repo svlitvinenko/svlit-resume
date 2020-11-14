@@ -41,7 +41,7 @@ public class SignUpController {
 
         try {
             signUpUseCase.signUp(command);
-            return new UnifiedModelAndView("redirect:/login", navigationContent);
+            return new UnifiedModelAndView("redirect:/sign-in", navigationContent);
         } catch (UsernameTakenException e) {
             return errorAlreadyExists(navigationContent);
         }

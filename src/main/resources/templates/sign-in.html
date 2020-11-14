@@ -2,19 +2,19 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/common/scripts.html :: resources(~{::title})">
-    <title>Wall — Sergei Litvinenko</title>
+    <title>Sign in</title>
 </head>
 
 <body>
+
 
     <div class="page">
         <div th:replace="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
 
         <main class="content">
             <div class="container my-5">
-                <div th:insert="fragments/sweater/sweater.html :: new-message"></div>
-                <div th:insert="fragments/sweater/sweater.html :: filter(value=${filter})"></div>
-                <div th:insert="fragments/sweater/sweater.html :: message-list(messages=${messages})"></div>
+                <div th:insert="fragments/sign-in/errors.html :: errors"></div>
+                <div th:insert="fragments/sign-in/form-sign-in.html :: form-sign-in"></div>
             </div>
         </main>
 
@@ -22,7 +22,6 @@
     </div>
 
     <div th:insert="fragments/common/scripts.html :: scripts"></div>
-
 </body>
 
 </html>

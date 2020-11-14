@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments for Login</title>
+</head>
+
+<body>
+
+    <div th:fragment="errors">
+        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+            Invalid username or password.
+        </div>
+
+        <div th:if="${param.logout}" class="alert alert-secondary" role="alert">
+            Successfully logged out.
+        </div>
+    </div>
+
+</body>
+
+</html>

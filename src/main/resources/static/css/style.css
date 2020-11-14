@@ -1,31 +1,10 @@
-html {
-    height: 100%;
+.content {
+    margin: 0 auto;
+    width: 100%;
 }
-
-body {
-    min-height: 100%;
-    display: grid;
-    grid-template-rows: 1fr auto;
-}
-
-p {
-    font-family: Exo2-Regular, verdana;
-}
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.header {}
-
-.content {}
 
 .footer {
-    grid-row-start: 2;
-    grid-row-end: 3;
+    margin-top: auto;
 }
 
 .carousel-item:after {
@@ -50,4 +29,11 @@ p {
 
 .brand {
     font-family: Exo2-Regular, verdana;
+}
+
+.page {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
