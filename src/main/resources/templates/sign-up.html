@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head th:replace="fragments/common/scripts.html :: resources(~{::title})">
-    <title>Sweater. Sign up</title>
+    <title>Sign up</title>
 </head>
+
 <body>
 
-<div class="content">
-    <div th:insert="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
-    <div class="container mt-5">
-        <div th:insert="fragments/sign-up/sign-up.html :: errors(${error_user_exists})"></div>
-        <div th:insert="fragments/sign-up/sign-up.html :: form-sign-up"></div>
-    </div>
-</div>
-<div th:insert="fragments/common/footer.html :: footer"></div>
+    <div class="page">
+        <div th:replace="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
 
-<div th:insert="fragments/common/scripts.html :: scripts"></div>
+        <main class="content">
+            <div class="container my-5">
+                <div th:insert="fragments/sign-up/sign-up.html :: errors(${error_user_exists})"></div>
+                <div th:insert="fragments/sign-up/sign-up.html :: form-sign-up"></div>
+            </div>
+        </main>
+
+        <div th:replace="fragments/common/footer.html :: footer"></div>
+    </div>
+
+    <div th:insert="fragments/common/scripts.html :: scripts"></div>
 </body>
+
 </html>

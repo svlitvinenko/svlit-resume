@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
 </head>
+
 <body>
 <div th:fragment="header (navigationContent)" class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -13,37 +15,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="featuresDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle brand" href="#" id="featuresDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Features
                     </a>
                     <div class="dropdown-menu" aria-labelledby="featuresDropdown">
-                        <tr th:each="feature : ${navigationContent.features}">
-                            <td>
-                                <a th:href="${feature.relativeAddress}" th:text="${feature.title}"
-                                   class="dropdown-item"></a>
-                            </td>
-                        </tr>
+                        <div th:each="feature : ${navigationContent.features}">
+                            <a th:href="${feature.relativeAddress}" th:text="${feature.title}"
+                               class="dropdown-item brand"></a>
+                        </div>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="contactsDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle brand" href="#" id="contactsDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Contact me
                     </a>
                     <div class="dropdown-menu" aria-labelledby="contactsDropdown">
-                        <tr th:each="contact : ${navigationContent.contacts}">
-                            <td>
-                                <a th:href="${contact.socialNetwork.baseUrl + contact.userIdentifier}"
-                                   class="dropdown-item">
-                                    <img th:src="${contact.socialNetwork.iconUrl}" width="24" height="24"/>
-                                    <span th:text="${contact.socialNetwork.name}"></span>
-                                </a>
-                            </td>
-                        </tr>
+                        <div th:each="contact : ${navigationContent.contacts}">
+                            <a th:href="${contact.socialNetwork.baseUrl + contact.userIdentifier}"
+                               class="dropdown-item">
+                                <img th:src="${contact.socialNetwork.iconUrl}" width="24" height="24"/>
+                                <span th:text="${contact.socialNetwork.name}" class="ml-2 brand"></span>
+                            </a>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -58,15 +54,16 @@
     </nav>
 </div>
 
-<form th:fragment="sign-out (username)" class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-    <label th:text="${username}" class="mr-3">User</label>
+<form th:fragment="sign-out (username)" class="form-inline" th:action="@{/logout}" method="post">
+    <label th:text="${username}" class="mr-3 brand">User</label>
     <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Log out</button>
 </form>
 
-<form th:fragment="sign-in-or-up" class="form-inline my-2 my-lg-0" action="/login">
-    <button class="btn btn-outline-secondary my-2 my-sm-0 mr-3" type="submit" th:name="@{/login}">Sign in</button>
-    <button class="btn btn-primary my-2 my-sm-0" type="submit" th:name="@{/sign-up}">Sign up</button>
-</form>
+<div th:fragment="sign-in-or-up">
+    <a th:href="@{/sign-in}" class="btn btn-outline-secondary" role="button">Sign In</a>
+    <a th:href="@{/sign-up}" class="btn btn-success" role="button">Sign Up</a>
+</div>
 
 </body>
+
 </html>

@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org ">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thymeleaf.org ">
 
 <head th:insert="fragments/common/scripts.html :: resources(~{::title})">
-    <title>COVID-19</title>
+    <title>COVID-19 — Sergei Litvinenko</title>
 </head>
 
 <body>
 
-<div class="content">
-    <div th:insert="fragments/common/header::header(navigationContent=${navigationContent})"></div>
+    <div class="page">
+        <div th:replace="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
 
-    <div class="container my-5">
-        <div class="jumbotron">
-            <h1 class="display-4"><span class="brand">Coronavirus Dashboard</span></h1>
-            <hr class="my-4">
-            <p class="lead"><span class="brand">Total cases reported:</span></p>
-            <h1 class="display-4" th:text="${totalCasesReported}"></h1>
-            <hr class="my-4">
-            <p class="lead"><span class="brand">Today cases:</span></p>
-            <h1 class="display-4" th:text="${totalIncrease}"></h1>
-            <hr class="my-4">
-            <p class="brand">Based on materials of Johns Hopkins Whiting School of Engineering.</p>
-        </div>
+        <main class="content">
+            <div class="container my-5">
+                <div class="jumbotron">
+                    <h1 class="display-4"><span class="brand">Coronavirus Dashboard</span></h1>
+                    <hr class="my-4">
+                    <p class="lead"><span class="brand">Total cases reported:</span></p>
+                    <h1 class="display-4" th:text="${totalCasesReported}"></h1>
+                    <hr class="my-4">
+                    <p class="lead"><span class="brand">Today cases:</span></p>
+                    <h1 class="display-4" th:text="${totalIncrease}"></h1>
+                    <hr class="my-4">
+                    <p class="brand">Based on materials of Johns Hopkins Whiting School of Engineering.</p>
+                </div>
 
-        <table class="table table-hover">
-            <tr>
-                <th><span class="brand">Country</span></th>
-                <th style="text-align:center"><span class="brand">Total cases reported</span></th>
-                <th style="text-align:center"><span class="brand">New cases today</span></th>
-            </tr>
-            <tr th:each="row : ${rows}">
-                <td th:text="${row.country}"></td>
-                <td style="text-align:center" th:text="${row.totalCases}"></td>
-                <td style="text-align:center" th:text="${row.increasedBy}"></td>
-            </tr>
-        </table>
+                <table class="table table-hover">
+                    <tr>
+                        <th><span class="brand">Country</span></th>
+                        <th style="text-align:center"><span class="brand">Total cases reported</span></th>
+                        <th style="text-align:center"><span class="brand">New cases today</span></th>
+                    </tr>
+                    <tr th:each="row : ${rows}">
+                        <td th:text="${row.country}"></td>
+                        <td style="text-align:center" th:text="${row.totalCases}"></td>
+                        <td style="text-align:center" th:text="${row.increasedBy}"></td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+
+        <div th:replace="fragments/common/footer.html :: footer"></div>
     </div>
-</div>
 
-<div th:insert="fragments/common/footer::footer"></div>
 
-<div th:insert="fragments/common/scripts.html :: scripts"></div>
+
+    <div th:insert="fragments/common/scripts.html :: scripts"></div>
 </body>
 
 </html>
