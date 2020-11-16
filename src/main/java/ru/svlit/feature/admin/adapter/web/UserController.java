@@ -14,7 +14,7 @@ import ru.svlit.feature.authentication.domain.Role;
 import ru.svlit.feature.authentication.domain.User;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase.GetNavigationContentCommand;
-import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase.UserNotFoundException;
+import ru.svlit.feature.wall.application.port.in.SubmitMessageUseCase.UserNotFoundException;
 
 import java.util.HashSet;
 import java.util.Map;

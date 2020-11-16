@@ -11,7 +11,7 @@ import ru.svlit.feature.home.configuration.HomeConfiguration;
 
 @WebAdapter
 @RequiredArgsConstructor
-public class GetMessageOfTheDayPortImpl implements GetMessageOfTheDayPort {
+class GetMessageOfTheDayPortImpl implements GetMessageOfTheDayPort {
 
     private final HomeConfiguration configuration;
     private MessageOfTheDay messageOfTheDay;

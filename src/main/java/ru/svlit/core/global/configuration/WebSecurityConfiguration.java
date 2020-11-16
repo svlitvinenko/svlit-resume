@@ -6,8 +6,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import ru.svlit.feature.authentication.application.service.CommonUserService;
 
 import static ru.svlit.feature.authentication.domain.Role.ADMIN;
 
@@ -16,14 +16,14 @@ import static ru.svlit.feature.authentication.domain.Role.ADMIN;
 @RequiredArgsConstructor
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final CommonUserService userService;
+    private final UserDetailsService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/sign-in", "/covid", "/sign-up", "/static/**").permitAll()
-                //.antMatchers("/user/**").hasRole(ADMIN.name())
+                .antMatchers("/user/**").hasAuthority(ADMIN.name())
                 .anyRequest().authenticated()
 
                 .and()

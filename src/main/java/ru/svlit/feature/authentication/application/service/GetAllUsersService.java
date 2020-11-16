@@ -8,7 +8,7 @@ import ru.svlit.feature.authentication.domain.User;
 
 @UseCase
 @RequiredArgsConstructor
-public class GetAllUsersService implements GetAllUsersUseCase {
+class GetAllUsersService implements GetAllUsersUseCase {
 
     private final GetAllUsersPort getAllUsersPort;
 

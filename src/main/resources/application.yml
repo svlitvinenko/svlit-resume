@@ -18,11 +18,5 @@ home:
 
 server:
   port: ${corona-dash.server-port}
-
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost/sweater
-    username: springapp
-    password: QqSpring
   jpa:
     generate-ddl: true
