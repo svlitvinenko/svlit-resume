@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import ru.svlit.feature.authentication.domain.Role;
-import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase;
+import ru.svlit.feature.wall.application.port.in.SubmitMessageUseCase;
 
 import java.util.Set;
 

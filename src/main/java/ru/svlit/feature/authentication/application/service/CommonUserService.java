@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @UseCase
 @RequiredArgsConstructor
-public class CommonUserService implements GetCurrentUserUseCase, FindUserByUsernameUseCase, FindUserByIdUseCase, UserDetailsService {
+class CommonUserService implements GetCurrentUserUseCase, FindUserByUsernameUseCase, FindUserByIdUseCase, UserDetailsService {
 
     private final FindUserByUsernamePort findUserByUsernamePort;
     private final FindUserByIdPort findUserByIdPort;

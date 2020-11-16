@@ -1,27 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:insert="fragments/common/scripts.html :: resources(~{::title})">
-    <title>Not Found</title>
+<head th:insert="error/fragments/error.html :: error-head">
 </head>
 
 <body>
 <div class="page">
     <main class="content">
-        <div class="container my-5">
-            <div class="container">
-                <div class="child">
-                    <div class="jumbotron">
-                        <h1 class="display-4">
-                            <span class="badge badge-warning">404</span> Not Found
-                        </h1>
-                        <hr class="my-4">
-                        <a href="/" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Return to
-                            Main</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div th:insert="error/fragments/error.html :: error"></div>
     </main>
     <div th:replace="fragments/common/footer.html :: footer"></div>
 </div>

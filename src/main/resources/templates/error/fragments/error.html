@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="error-head" th:replace="fragments/common/scripts.html :: resources(~{::title})">
+    <title th:text="${status} + ' — ' + ${error}"></title>
+</head>
+<body>
+
+<div th:fragment="error">
+    <div class="container my-5">
+        <div class="container">
+            <div class="child">
+                <div class="jumbotron">
+                    <h1 class="display-4">
+                        <span class="badge badge-warning" th:text="${status}"></span>
+                        <span th:text="${error}"></span>
+                    </h1>
+                    <hr class="my-4">
+                    <a href="/" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Return to
+                        Main</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

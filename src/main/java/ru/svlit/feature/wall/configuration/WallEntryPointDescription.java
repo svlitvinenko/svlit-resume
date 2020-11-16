@@ -1,10 +1,10 @@
-package ru.svlit.feature.coronadash.configuration;
+package ru.svlit.feature.wall.configuration;
 
-import ru.svlit.architecture.annotation.EntryPoint;
 import ru.svlit.architecture.EntryPointDescription;
+import ru.svlit.architecture.annotation.EntryPoint;
 
 @EntryPoint
-class CoronaDashEntryPointDescription implements EntryPointDescription {
+class WallEntryPointDescription implements EntryPointDescription {
     @Override
     public boolean isEnabled() {
         return true;
@@ -12,11 +12,11 @@ class CoronaDashEntryPointDescription implements EntryPointDescription {
 
     @Override
     public String getTitle() {
-        return "COVID-19 Dashboard";
+        return "The Wall";
     }
 
     @Override
     public String getRelativeAddress() {
-        return "/covid";
+        return "/wall";
     }
 }

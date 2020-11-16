@@ -18,7 +18,7 @@ import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase.Get
 @WebAdapter
 @RequiredArgsConstructor
 @RequestMapping("/sign-up")
-public class SignUpController {
+class SignUpController {
 
     private final SignUpUseCase signUpUseCase;
     private final FindUserByUsernameUseCase findUserByUsernameUseCase;

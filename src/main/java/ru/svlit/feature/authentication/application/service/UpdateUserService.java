@@ -6,7 +6,7 @@ import ru.svlit.feature.authentication.application.port.in.FindUserByIdUseCase;
 import ru.svlit.feature.authentication.application.port.in.UpdateUserUseCase;
 import ru.svlit.feature.authentication.application.port.out.UpdateUserPort;
 import ru.svlit.feature.authentication.domain.User;
-import ru.svlit.feature.sweater.application.port.in.SubmitMessageUseCase.UserNotFoundException;
+import ru.svlit.feature.wall.application.port.in.SubmitMessageUseCase.UserNotFoundException;
 
 @UseCase
 @RequiredArgsConstructor

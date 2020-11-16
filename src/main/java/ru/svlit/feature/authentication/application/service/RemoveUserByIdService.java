@@ -7,7 +7,7 @@ import ru.svlit.feature.authentication.application.port.out.RemoveUserByIdPort;
 
 @UseCase
 @RequiredArgsConstructor
-public class RemoveUserByIdService implements RemoveUserByIdUseCase {
+class RemoveUserByIdService implements RemoveUserByIdUseCase {
 
     private final RemoveUserByIdPort removeUserByIdPort;
 

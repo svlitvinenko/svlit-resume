@@ -11,7 +11,7 @@ import static java.util.Arrays.asList;
 
 @UseCase
 @RequiredArgsConstructor
-public class GetAchievementsService implements GetAchievementsUseCase {
+class GetAchievementsService implements GetAchievementsUseCase {
 
     @Override
     public List<Achievement> perform() {

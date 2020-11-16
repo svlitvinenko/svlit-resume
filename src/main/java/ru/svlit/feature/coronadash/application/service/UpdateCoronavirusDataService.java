@@ -14,7 +14,7 @@ import ru.svlit.feature.coronadash.configuration.CoronaDashConfigurationConstant
 @Slf4j
 @UseCase
 @RequiredArgsConstructor
-public class UpdateCoronavirusDataService implements UpdateCoronavirusDataUseCase {
+class UpdateCoronavirusDataService implements UpdateCoronavirusDataUseCase {
     private final PersistCoronavirusDataPort persistCoronavirusDataPort;
     private final FetchCoronavirusDataPort getCoronavirusDataPort;
 
