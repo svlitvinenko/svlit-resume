@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/common/scripts.html :: resources(~{::title})">
-    <title>Wall — Sergei Litvinenko</title>
+    <title>Bulletin board — Sergei Litvinenko</title>
 </head>
 
 <body>
@@ -12,8 +12,7 @@
 
     <main class="content">
         <div class="container my-5">
-            <div th:insert="fragments/wall/wall.html :: new-message"></div>
-            <div th:insert="fragments/wall/wall.html :: filter(value=${filter})"></div>
+            <div th:insert="fragments/wall/wall.html :: new-message(filter=${filter}, maxLength=${maxLength})"></div>
             <div th:insert="fragments/wall/wall.html :: message-list(messages=${messages})"></div>
         </div>
     </main>

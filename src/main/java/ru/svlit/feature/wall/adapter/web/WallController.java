@@ -34,7 +34,7 @@ class WallController {
     public UnifiedModelAndView getMain(@RequestParam(required = false) final String filter) {
         if (filter != null && !filter.isBlank()) {
             final Iterable<Message> filteredByTag = findMessagesByTagUseCase.findByTag(new FindMessagesByTagCommand(filter));
-            return getViewForMessages(filteredByTag);
+            return getViewForMessages(filteredByTag, filter);
         } else {
             return getViewForAllMessages();
         }
@@ -46,17 +46,19 @@ class WallController {
         return getViewForAllMessages();
     }
 
-    private UnifiedModelAndView getViewForMessages(Iterable<Message> messages) {
+    private UnifiedModelAndView getViewForMessages(Iterable<Message> messages, String filter) {
         final NavigationContent navigationContent = getNavigationContentUseCase.perform(
                 new GetNavigationContentCommand(true)
         );
         final UnifiedModelAndView modelAndView = new UnifiedModelAndView("wall", navigationContent);
         modelAndView.addObject("messages", messages);
+        modelAndView.addObject("filter", filter);
+        modelAndView.addObject("maxLength", 280);
         return modelAndView;
     }
 
     private UnifiedModelAndView getViewForAllMessages() {
         final Iterable<Message> messages = getAllMessagesUseCase.perform();
-        return getViewForMessages(messages);
+        return getViewForMessages(messages, "");
     }
 }
