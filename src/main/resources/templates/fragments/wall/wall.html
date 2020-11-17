@@ -6,37 +6,73 @@
 </head>
 <body>
 
-<div th:fragment="new-message">
-    <h2>New message:</h2>
+<div th:fragment="new-message(filter, maxLength)">
+    <div class="card border-light mb-3 shadow">
+        <div class="card-header bg-light border-light">
+            <h3>Bulletin board</h3>
+        </div>
 
-    <div>
-        <form method="post" th:action="@{/wall}" enctype="multipart/form-data">
-            <input type="text" name="text" placeholder="Message">
-            <input type="text" name="tag" placeholder="Tag">
-            <button type="submit">Send</button>
-        </form>
+        <div class="card-body">
+            <form method="post" th:action="@{/wall}" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="text">Your notice</label>
+                    <textarea class="form-control" name="text" id="text" placeholder="Message"
+                              th:maxlength="${maxLength}" required></textarea>
+                    <small class="form-text text-muted">Once sent, you can't remove it.</small>
+                </div>
+
+
+                <div class="form-row align-items-center">
+                    <div class="col-8">
+                        <input type="text" class="form-control" name="tag" placeholder="Tag">
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="card-text card-footer bg-light text-white border-light">
+            <div>
+                <form method="get" th:action="@{/wall}">
+                    <div class="form-row">
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="filter" placeholder="Tag"
+                                   th:value="${filter}">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
-<div th:fragment="message-list (messages)">
-    <h2>Messages:</h2>
+<div th:fragment="message-list (messages)" class="card-columns my-5">
     <div th:each="message : ${messages}">
-        <p>
-            <b th:text="${message.author.username} + ' sweated:'"></b>
-            <span th:text="${message.text}"></span>
-            <i th:text="${message.tag}"></i>
-        </p>
+        <div th:replace=":: message-card(message=${message})"></div>
     </div>
 </div>
 
-<div th:fragment="filter (value)">
-    <h3>Filter</h3>
+<div th:fragment="message-card (message)">
+    <div class="card border-light mb-3 shadow">
+        <div class="card-header bg-light border-light">
+            <h5 th:text="${message.author.username}"></h5>
+        </div>
 
-    <div>
-        <form method="get" th:action="@{/wall}">
-            <input type="text" name="filter" placeholder="Tag" th:value="${value}">
-            <button type="submit">Filter</button>
-        </form>
+        <div class="card-body">
+            <p class="card-text" th:text="${message.text}"></p>
+        </div>
+
+        <div class="card-text card-footer bg-light text-white border-light" style="transform: rotate(0);"
+             th:if="${!#strings.isEmpty(message.tag)}">
+            <a th:href="@{/wall?filter={tag}(tag=${message.tag})}" class="stretched-link badge badge-primary"
+               th:text="${message.tag}"></a>
+        </div>
     </div>
 </div>
 
