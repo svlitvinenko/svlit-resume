@@ -1,4 +1,4 @@
-package ru.svlit.feature.authentication.domain;
+package ru.svlit.core.global.configuration.security;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static java.util.Collections.singleton;
 import static java.util.UUID.randomUUID;
-import static ru.svlit.feature.authentication.domain.Role.USER;
+import static ru.svlit.core.global.configuration.security.Role.USER;
 
 @UseCase
 @RequiredArgsConstructor

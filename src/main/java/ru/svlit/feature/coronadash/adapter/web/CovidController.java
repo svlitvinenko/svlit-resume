@@ -13,8 +13,10 @@ import ru.svlit.feature.coronadash.application.port.out.GetPersistedCoronavirusD
 import ru.svlit.feature.coronadash.domain.World;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 
+import static ru.svlit.feature.coronadash.configuration.CoronaDashConfigurationConstants.PATH_SEGMENT_COVID;
+
 @Controller
-@RequestMapping("/covid")
+@RequestMapping(PATH_SEGMENT_COVID)
 @RequiredArgsConstructor
 class CovidController {
     private final GetCoronavirusDataUseCase getCoronavirusDataUseCase;

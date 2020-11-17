@@ -8,20 +8,20 @@
 <body>
 
 
-    <div class="page">
-        <div th:replace="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
+<div class="page">
+    <div th:replace="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
 
-        <main class="content">
-            <div class="container my-5">
-                <div th:insert="fragments/sign-in/errors.html :: errors"></div>
-                <div th:insert="fragments/sign-in/form-sign-in.html :: form-sign-in"></div>
-            </div>
-        </main>
+    <main class="content">
+        <div class="container my-5">
+            <div th:insert="fragments/sign-in/errors.html :: errors"></div>
+            <div th:insert="fragments/sign-in/form-sign-in.html :: form-sign-in"></div>
+        </div>
+    </main>
 
-        <div th:replace="fragments/common/footer.html :: footer"></div>
-    </div>
+    <div th:replace="fragments/common/footer.html :: footer"></div>
+</div>
 
-    <div th:insert="fragments/common/scripts.html :: scripts"></div>
+<div th:insert="fragments/common/scripts.html :: scripts"></div>
 </body>
 
 </html>

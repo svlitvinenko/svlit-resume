@@ -1,8 +1,8 @@
 package ru.svlit.feature.coronadash.adapter.web.converter;
 
 import org.springframework.stereotype.Service;
-import ru.svlit.core.util.UnifiedModelAndView;
 import ru.svlit.core.util.NavigationContent;
+import ru.svlit.core.util.UnifiedModelAndView;
 import ru.svlit.feature.coronadash.adapter.web.entity.FlatRegionStatisticsRow;
 import ru.svlit.feature.coronadash.domain.Country;
 import ru.svlit.feature.coronadash.domain.StatisticsEntry;
@@ -15,6 +15,7 @@ import java.util.Optional;
 import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toUnmodifiableList;
+import static ru.svlit.feature.coronadash.configuration.CoronaDashConfigurationConstants.SEGMENT_COVID;
 
 @Service
 public class WorldWideStatisticsModelConverter {
@@ -23,7 +24,7 @@ public class WorldWideStatisticsModelConverter {
     private static final String MODEL_TOTAL_INCREASE = "totalIncrease";
 
     public UnifiedModelAndView convert(World statistics, NavigationContent navigationContent) {
-        final UnifiedModelAndView model = new UnifiedModelAndView("covid", navigationContent);
+        final UnifiedModelAndView model = new UnifiedModelAndView(SEGMENT_COVID, navigationContent);
 
         final List<FlatRegionStatisticsRow> countryRows = getCountryRows(statistics).stream()
                 .sorted((a, b) -> (int) (b.getIncreasedBy() - a.getIncreasedBy()))

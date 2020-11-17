@@ -3,14 +3,15 @@ package ru.svlit.feature.admin.adapter.web;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.svlit.architecture.annotation.WebAdapter;
+import ru.svlit.core.global.configuration.security.Role;
 import ru.svlit.core.util.NavigationContent;
+import ru.svlit.core.util.Redirect;
 import ru.svlit.core.util.UnifiedModelAndView;
 import ru.svlit.feature.authentication.application.port.in.FindUserByIdUseCase;
 import ru.svlit.feature.authentication.application.port.in.GetAllUsersUseCase;
 import ru.svlit.feature.authentication.application.port.in.RemoveUserByIdUseCase;
 import ru.svlit.feature.authentication.application.port.in.UpdateUserUseCase;
 import ru.svlit.feature.authentication.application.port.in.UpdateUserUseCase.UpdateUserCommand;
-import ru.svlit.feature.authentication.domain.Role;
 import ru.svlit.feature.authentication.domain.User;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase.GetNavigationContentCommand;
@@ -22,11 +23,17 @@ import java.util.Set;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
+import static ru.svlit.feature.admin.configuration.AdminPanelConfigurationConstants.*;
 
 @WebAdapter
-@RequestMapping("/user")
 @RequiredArgsConstructor
-class UserController {
+@RequestMapping(PATH_ADMIN_PANEL)
+class AdminPanelController {
+
+    private static final String MAPPING_GET_USER_DETAILS = "/{id}";
+    private static final String MAPPING_REMOVE_USER_BY_ID = "/remove/{id}";
+    private static final String REQUEST_PARAM_USER_ID = "id";
+    private static final String REQUEST_PARAM_USER_NAME = "username";
 
     private final GetAllUsersUseCase getAllUsersUseCase;
     private final FindUserByIdUseCase findUserByIdUseCase;
@@ -41,28 +48,28 @@ class UserController {
                 new GetNavigationContentCommand(true)
         );
 
-        final UnifiedModelAndView modelAndView = new UnifiedModelAndView("users", navigationContent);
+        final UnifiedModelAndView modelAndView = new UnifiedModelAndView(SEGMENT_ADMIN_PANEL, navigationContent);
         modelAndView.addObject("users", users);
         modelAndView.addObject("roles", Role.values());
         return modelAndView;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(MAPPING_GET_USER_DETAILS)
     public UnifiedModelAndView getUserDetails(@PathVariable final String id) throws UserNotFoundException {
         final User user = findUserByIdUseCase.findByUd(id).orElseThrow(UserNotFoundException::new);
         final NavigationContent navigationContent = getNavigationContentUseCase.perform(
                 new GetNavigationContentCommand(true)
         );
 
-        final UnifiedModelAndView modelAndView = new UnifiedModelAndView("user", navigationContent);
+        final UnifiedModelAndView modelAndView = new UnifiedModelAndView(PATH_ADMIN_PANEL_USER_DETAILS, navigationContent);
         modelAndView.addObject("user", user);
         modelAndView.addObject("roles", Role.values());
         return modelAndView;
     }
 
     @PostMapping
-    public String saveUser(@RequestParam("id") String id,
-                           @RequestParam("username") String updatedUsername,
+    public String saveUser(@RequestParam(REQUEST_PARAM_USER_ID) String id,
+                           @RequestParam(REQUEST_PARAM_USER_NAME) String updatedUsername,
                            @RequestParam Map<String, String> form) throws UserNotFoundException {
         final User user = findUserByIdUseCase.findByUd(id).orElseThrow(UserNotFoundException::new);
 
@@ -82,13 +89,13 @@ class UserController {
                 roles
         ));
 
-        return "redirect:/user";
+        return Redirect.to(PATH_ADMIN_PANEL);
     }
 
-    @PostMapping("/remove/{id}")
+    @PostMapping(MAPPING_REMOVE_USER_BY_ID)
     public String remove(@PathVariable final String id) throws UserNotFoundException {
         final User user = findUserByIdUseCase.findByUd(id).orElseThrow(UserNotFoundException::new);
         removeUserByIdUseCase.removeById(user.getId());
-        return "redirect:/user";
+        return Redirect.to(PATH_ADMIN_PANEL);
     }
 }

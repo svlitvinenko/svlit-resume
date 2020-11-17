@@ -1,7 +1,9 @@
 package ru.svlit.feature.coronadash.configuration;
 
-import ru.svlit.architecture.annotation.EntryPoint;
 import ru.svlit.architecture.EntryPointDescription;
+import ru.svlit.architecture.annotation.EntryPoint;
+
+import static ru.svlit.feature.coronadash.configuration.CoronaDashConfigurationConstants.PATH_SEGMENT_COVID;
 
 @EntryPoint
 class CoronaDashEntryPointDescription implements EntryPointDescription {
@@ -17,6 +19,6 @@ class CoronaDashEntryPointDescription implements EntryPointDescription {
 
     @Override
     public String getRelativeAddress() {
-        return "/covid";
+        return PATH_SEGMENT_COVID;
     }
 }

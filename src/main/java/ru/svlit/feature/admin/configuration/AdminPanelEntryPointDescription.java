@@ -8,7 +8,8 @@ import ru.svlit.feature.authentication.domain.User;
 
 import java.util.Optional;
 
-import static ru.svlit.feature.authentication.domain.Role.ADMIN;
+import static ru.svlit.core.global.configuration.security.Role.ADMIN;
+import static ru.svlit.feature.admin.configuration.AdminPanelConfigurationConstants.PATH_ADMIN_PANEL;
 
 @EntryPoint
 @RequiredArgsConstructor
@@ -33,6 +34,6 @@ public class AdminPanelEntryPointDescription implements EntryPointDescription {
 
     @Override
     public String getRelativeAddress() {
-        return "/user";
+        return PATH_ADMIN_PANEL;
     }
 }

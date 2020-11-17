@@ -8,48 +8,48 @@
 
 <body>
 
-    <div th:fragment="form-sign-up">
-        <h2 class="brand">Sign up</h2>
+<div th:fragment="form-sign-up">
+    <h2 class="brand">Sign up</h2>
 
-        <form th:action="@{/sign-up}" method="post">
-            <div class="form-group row">
-                <label for="username" class="col-sm-2 col-form-label">Username</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="username" name="username" placeholder="ThomasWayne">
-                </div>
+    <form th:action="@{/sign-up}" method="post">
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" name="username" placeholder="ThomasWayne">
             </div>
-            <div class="form-group row">
-                <label for="password" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="i_am_batman">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-2">Terms and Conditions</div>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="conditions" name="conditions" required>
-                        <label class="form-check-label" for="conditions">
-                            I agree with Terms and Conditions
-                    </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Sign up</button>
-                </div>
-            </div>
-        </form>
-
-        Already have an account? <a th:href="@{/sign-in}">Sign in</a>.
-    </div>
-
-    <div th:fragment="errors (error_user_exists)">
-        <div th:if="${error_user_exists}" class="alert alert-secondary" role="alert">
-            This username is already taken.
         </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" name="password" placeholder="i_am_batman">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">Terms and Conditions</div>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="conditions" name="conditions" required>
+                    <label class="form-check-label" for="conditions">
+                        I agree with Terms and Conditions
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
+        </div>
+    </form>
+
+    Already have an account? <a th:href="@{/sign-in}">Sign in</a>.
+</div>
+
+<div th:fragment="errors (error_user_exists)">
+    <div th:if="${error_user_exists}" class="alert alert-secondary" role="alert">
+        This username is already taken.
     </div>
+</div>
 
 </body>
 

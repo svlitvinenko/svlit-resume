@@ -8,15 +8,15 @@
 
 <body>
 
-    <div th:fragment="errors">
-        <div th:if="${param.error}" class="alert alert-danger" role="alert">
-            Invalid username or password.
-        </div>
-
-        <div th:if="${param.logout}" class="alert alert-secondary" role="alert">
-            Successfully logged out.
-        </div>
+<div th:fragment="errors">
+    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+        Invalid username or password.
     </div>
+
+    <div th:if="${param.logout}" class="alert alert-secondary" role="alert">
+        Successfully logged out.
+    </div>
+</div>
 
 </body>
 
