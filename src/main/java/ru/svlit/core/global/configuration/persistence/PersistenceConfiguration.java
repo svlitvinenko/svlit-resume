@@ -1,4 +1,4 @@
-package ru.svlit.core.global.configuration;
+package ru.svlit.core.global.configuration.persistence;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class PersistenceConfiguration {
 
-    private final GlobalConfiguration globalConfiguration;
+    private final PersistenceConfigurationProperties persistenceConfigurationProperties;
 
     @Bean
     MongoClient provideMongoClient() {
-        return MongoClients.create(globalConfiguration.getDatabaseConnectionString());
+        return MongoClients.create(persistenceConfigurationProperties.getDatabaseConnectionString());
     }
 }

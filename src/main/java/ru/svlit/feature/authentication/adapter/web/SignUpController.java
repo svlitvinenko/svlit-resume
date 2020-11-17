@@ -7,21 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.svlit.architecture.annotation.WebAdapter;
 import ru.svlit.core.util.NavigationContent;
+import ru.svlit.core.util.Redirect;
 import ru.svlit.core.util.UnifiedModelAndView;
-import ru.svlit.feature.authentication.application.port.in.FindUserByUsernameUseCase;
 import ru.svlit.feature.authentication.application.port.in.SignUpUseCase;
 import ru.svlit.feature.authentication.application.port.in.SignUpUseCase.SignUpCommand;
 import ru.svlit.feature.authentication.application.port.in.SignUpUseCase.UsernameTakenException;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase.GetNavigationContentCommand;
 
+import static ru.svlit.feature.home.configuration.HomeConfigurationConstants.*;
+
 @WebAdapter
 @RequiredArgsConstructor
-@RequestMapping("/sign-up")
+@RequestMapping(PATH_SIGN_UP)
 class SignUpController {
 
     private final SignUpUseCase signUpUseCase;
-    private final FindUserByUsernameUseCase findUserByUsernameUseCase;
     private final GetNavigationContentUseCase getNavigationContentUseCase;
 
     @GetMapping
@@ -29,7 +30,7 @@ class SignUpController {
         final NavigationContent navigationContent = getNavigationContentUseCase.perform(
                 new GetNavigationContentCommand(false)
         );
-        return new UnifiedModelAndView("sign-up", navigationContent);
+        return new UnifiedModelAndView(SEGMENT_SIGN_UP, navigationContent);
     }
 
     @PostMapping
@@ -41,7 +42,7 @@ class SignUpController {
 
         try {
             signUpUseCase.signUp(command);
-            return new UnifiedModelAndView("redirect:/sign-in", navigationContent);
+            return new UnifiedModelAndView(Redirect.to(PATH_SIGN_IN), navigationContent);
         } catch (UsernameTakenException e) {
             return errorAlreadyExists(navigationContent);
         }
@@ -49,7 +50,7 @@ class SignUpController {
     }
 
     private UnifiedModelAndView errorAlreadyExists(NavigationContent navigationContent) {
-        final UnifiedModelAndView modelAndView = new UnifiedModelAndView("sign-up", navigationContent);
+        final UnifiedModelAndView modelAndView = new UnifiedModelAndView(SEGMENT_SIGN_UP, navigationContent);
         modelAndView.addObject("error_user_exists", true);
         return modelAndView;
     }

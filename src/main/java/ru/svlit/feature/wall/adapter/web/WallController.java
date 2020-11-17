@@ -19,9 +19,11 @@ import ru.svlit.feature.wall.application.port.in.SubmitMessageUseCase.EmptyMessa
 import ru.svlit.feature.wall.application.port.in.SubmitMessageUseCase.SubmitMessageCommand;
 import ru.svlit.feature.wall.application.port.in.SubmitMessageUseCase.UserNotFoundException;
 
+import static ru.svlit.feature.wall.configuration.WallConfigurationConstants.PATH_WALL;
+
 @WebAdapter
 @RequiredArgsConstructor
-@RequestMapping("/wall")
+@RequestMapping(PATH_WALL)
 class WallController {
     private final GetNavigationContentUseCase getNavigationContentUseCase;
     private final GetAllMessagesUseCase getAllMessagesUseCase;

@@ -8,7 +8,7 @@
 
 <div th:fragment="user-details (user, roles)" class="table table-hover">
     <h2 th:text="'Information about ' + ${user.username} + ':'"></h2>
-    <form method="post" th:action="@{/user}">
+    <form method="post" th:action="@{/admin}">
         <div class="form-group">
             <label for="formUserId">User Identifier</label>
             <input type="text" class="form-control" id="formUserId" readonly name="id" th:value="${user.id}">
@@ -33,7 +33,7 @@
         </div>
     </form>
 
-    <form method="post" th:action="@{/user/remove/{id}(id=${user.id})}">
+    <form method="post" th:action="@{/admin/remove/{id}(id=${user.id})}">
         <div class="mt-4">
             <label class="form-check-label">You can remove this user.</label>
             <button class="btn btn-outline-danger ml-1" th:name="remove" type="submit">

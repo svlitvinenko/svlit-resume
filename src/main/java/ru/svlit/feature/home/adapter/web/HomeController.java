@@ -15,9 +15,11 @@ import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 
 import java.util.List;
 
+import static ru.svlit.feature.home.configuration.HomeConfigurationConstants.PATH_HOME;
+
 @Controller
-@RequestMapping("/")
 @RequiredArgsConstructor
+@RequestMapping(PATH_HOME)
 class HomeController {
     private final GetMessageOfTheDayUseCase getMessageOfTheDayUseCase;
     private final GetNavigationContentUseCase getNavigationContentUseCase;

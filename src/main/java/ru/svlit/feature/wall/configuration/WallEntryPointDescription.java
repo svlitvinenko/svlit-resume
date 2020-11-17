@@ -3,6 +3,8 @@ package ru.svlit.feature.wall.configuration;
 import ru.svlit.architecture.EntryPointDescription;
 import ru.svlit.architecture.annotation.EntryPoint;
 
+import static ru.svlit.feature.wall.configuration.WallConfigurationConstants.PATH_WALL;
+
 @EntryPoint
 class WallEntryPointDescription implements EntryPointDescription {
     @Override
@@ -17,6 +19,6 @@ class WallEntryPointDescription implements EntryPointDescription {
 
     @Override
     public String getRelativeAddress() {
-        return "/wall";
+        return PATH_WALL;
     }
 }

@@ -9,9 +9,12 @@ import ru.svlit.core.util.UnifiedModelAndView;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase.GetNavigationContentCommand;
 
+import static ru.svlit.feature.home.configuration.HomeConfigurationConstants.PATH_SIGN_IN;
+import static ru.svlit.feature.home.configuration.HomeConfigurationConstants.SEGMENT_SIGN_IN;
+
 @WebAdapter
-@RequestMapping("/sign-in")
 @RequiredArgsConstructor
+@RequestMapping(PATH_SIGN_IN)
 class SignInController {
 
     private final GetNavigationContentUseCase getNavigationContentUseCase;
@@ -22,6 +25,6 @@ class SignInController {
                 new GetNavigationContentCommand(false)
         );
 
-        return new UnifiedModelAndView("sign-in", navigationContent);
+        return new UnifiedModelAndView(SEGMENT_SIGN_IN, navigationContent);
     }
 }

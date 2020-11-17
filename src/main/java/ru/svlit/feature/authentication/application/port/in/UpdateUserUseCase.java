@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import ru.svlit.feature.authentication.domain.Role;
+import ru.svlit.core.global.configuration.security.Role;
 import ru.svlit.feature.wall.application.port.in.SubmitMessageUseCase;
 
 import java.util.Set;

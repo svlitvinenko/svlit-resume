@@ -1,4 +1,4 @@
-package ru.svlit.core.global.configuration;
+package ru.svlit.core.global.configuration.persistence;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +13,6 @@ import org.springframework.context.annotation.Configuration;
 @AllArgsConstructor
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "global")
-class GlobalConfigurationImpl implements GlobalConfiguration {
+class PersistenceConfigurationPropertiesImpl implements PersistenceConfigurationProperties {
     private String databaseConnectionString;
 }
