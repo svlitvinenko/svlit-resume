@@ -1,9 +1,6 @@
 package ru.svlit.feature.authentication.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.svlit.core.global.configuration.security.Role;
@@ -14,6 +11,7 @@ import java.util.UUID;
 
 import static java.util.Collections.emptySet;
 
+@With
 @Getter
 @ToString
 @EqualsAndHashCode
@@ -22,6 +20,7 @@ public class User implements UserDetails {
 
     private final String id;
     private final String username;
+    private final String email;
     private final String password;
     private final Set<Role> roles;
     private final boolean isActive;
@@ -64,6 +63,7 @@ public class User implements UserDetails {
     public static User unknown() {
         return new User(
                 "-1",
+                null,
                 "UFO",
                 UUID.randomUUID().toString(),
                 emptySet(),

@@ -19,6 +19,7 @@ public interface UpdateUserUseCase {
     class UpdateUserCommand {
         private final String id;
         private final String username;
+        private final String email;
         private final Set<Role> roles;
     }
 }

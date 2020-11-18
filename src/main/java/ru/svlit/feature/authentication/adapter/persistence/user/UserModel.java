@@ -1,4 +1,4 @@
-package ru.svlit.feature.authentication.adapter.persistence;
+package ru.svlit.feature.authentication.adapter.persistence.user;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,6 +19,7 @@ public class UserModel {
     @Id
     private final String id;
     private final String username;
+    private final String email;
     private final String password;
     private final Set<String> roles;
     private final boolean isActive;

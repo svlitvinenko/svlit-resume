@@ -1,4 +1,4 @@
-package ru.svlit.feature.authentication.adapter.persistence;
+package ru.svlit.feature.authentication.adapter.persistence.user;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

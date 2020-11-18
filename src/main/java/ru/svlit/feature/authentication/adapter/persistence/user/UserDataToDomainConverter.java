@@ -1,4 +1,4 @@
-package ru.svlit.feature.authentication.adapter.persistence;
+package ru.svlit.feature.authentication.adapter.persistence.user;
 
 import org.springframework.stereotype.Service;
 import ru.svlit.core.global.configuration.security.Role;
@@ -13,6 +13,7 @@ public class UserDataToDomainConverter {
         return new User(
                 userModel.getId(),
                 userModel.getUsername(),
+                userModel.getEmail(),
                 userModel.getPassword(),
                 userModel.getRoles().stream().map(this::toRole).collect(toSet()),
                 userModel.isActive()

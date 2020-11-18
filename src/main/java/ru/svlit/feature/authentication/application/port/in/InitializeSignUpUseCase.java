@@ -5,17 +5,18 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-public interface SignUpUseCase {
+public interface InitializeSignUpUseCase {
 
-    void signUp(SignUpCommand command) throws UsernameTakenException;
+    void signUp(InitializeSignUpCommand command) throws UsernameTakenException;
 
     @Getter
     @ToString
     @EqualsAndHashCode
     @RequiredArgsConstructor
-    class SignUpCommand {
+    class InitializeSignUpCommand {
         private final String username;
         private final String password;
+        private final String email;
     }
 
     class UsernameTakenException extends Exception {
