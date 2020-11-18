@@ -21,6 +21,7 @@ class UpdateUserService implements UpdateUserUseCase {
         final User newUser = new User(
                 command.getId(),
                 command.getUsername(),
+                command.getEmail(),
                 oldUser.getPassword(),
                 command.getRoles(),
                 oldUser.isActive()

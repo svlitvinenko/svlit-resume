@@ -5,6 +5,7 @@ corona-dash:
 
 global:
   database-connection-string: ${SVLIT_DB_PATH}
+  base-url: ${SVLIT_BASE_URL:http://localhost:8080}
 
 home:
   telegram-name: Telegram
@@ -20,3 +21,12 @@ server:
   port: ${corona-dash.server-port}
   jpa:
     generate-ddl: true
+
+authentication:
+  mail:
+    host: smtp.yandex.ru
+    username: robot@svlit.ru
+    password: jZWJ8arfmiCY9rX
+    port: 465
+    protocol: smtps
+    debug: true

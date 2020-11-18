@@ -1,4 +1,4 @@
-package ru.svlit.feature.authentication.adapter.persistence;
+package ru.svlit.feature.authentication.adapter.persistence.user;
 
 import lombok.RequiredArgsConstructor;
 import ru.svlit.architecture.annotation.PersistenceAdapter;
@@ -11,14 +11,14 @@ import static java.util.stream.Collectors.toList;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class UserRepository implements SignUpPort, FindUserByUsernamePort, FindUserByIdPort, GetAllUsersPort, UpdateUserPort, RemoveUserByIdPort {
+public class UserRepository implements StoreUserPort, FindUserByUsernamePort, FindUserByIdPort, GetAllUsersPort, UpdateUserPort, RemoveUserByIdPort, ActivateUserPort {
 
     private final UserDataSource userDataSource;
     private final UserDomainToDataConverter userDomainToDataConverter;
     private final UserDataToDomainConverter userDataToDomainConverter;
 
     @Override
-    public void signUp(User user) {
+    public void store(User user) {
         final UserModel userModel = userDomainToDataConverter.convert(user);
         userDataSource.save(userModel);
     }
@@ -50,5 +50,10 @@ public class UserRepository implements SignUpPort, FindUserByUsernamePort, FindU
     @Override
     public void removeById(String id) {
         userDataSource.deleteById(id);
+    }
+
+    @Override
+    public void activate(User user) {
+        update(user.withActive(true));
     }
 }

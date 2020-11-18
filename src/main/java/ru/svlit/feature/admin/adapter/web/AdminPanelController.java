@@ -34,6 +34,7 @@ class AdminPanelController {
     private static final String MAPPING_REMOVE_USER_BY_ID = "/remove/{id}";
     private static final String REQUEST_PARAM_USER_ID = "id";
     private static final String REQUEST_PARAM_USER_NAME = "username";
+    private static final String REQUEST_PARAM_EMAIL = "email";
 
     private final GetAllUsersUseCase getAllUsersUseCase;
     private final FindUserByIdUseCase findUserByIdUseCase;
@@ -70,6 +71,7 @@ class AdminPanelController {
     @PostMapping
     public String saveUser(@RequestParam(REQUEST_PARAM_USER_ID) String id,
                            @RequestParam(REQUEST_PARAM_USER_NAME) String updatedUsername,
+                           @RequestParam(REQUEST_PARAM_EMAIL) String updatedEmail,
                            @RequestParam Map<String, String> form) throws UserNotFoundException {
         final User user = findUserByIdUseCase.findByUd(id).orElseThrow(UserNotFoundException::new);
 
@@ -86,6 +88,7 @@ class AdminPanelController {
         updateUserUseCase.updateUser(new UpdateUserCommand(
                 user.getId(),
                 updatedUsername,
+                updatedEmail,
                 roles
         ));
 

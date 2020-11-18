@@ -19,6 +19,11 @@
             <input type="text" class="form-control" id="formUsername" placeholder="Enter a username" name="username"
                    th:value="${user.username}">
         </div>
+        <div class="form-group">
+            <label for="formEmail">Email</label>
+            <input type="text" class="form-control" id="formEmail" placeholder="Enter an email" name="email"
+                   th:value="${user.email}">
+        </div>
         <div>
             <h5>Roles</h5>
             <div class="form-check form-check-inline" th:each="role,stat : ${roles}">
