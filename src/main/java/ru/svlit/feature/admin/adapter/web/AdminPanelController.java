@@ -62,7 +62,7 @@ class AdminPanelController {
                 new GetNavigationContentCommand(true)
         );
 
-        final UnifiedModelAndView modelAndView = new UnifiedModelAndView(PATH_ADMIN_PANEL_USER_DETAILS, navigationContent);
+        final UnifiedModelAndView modelAndView = new UnifiedModelAndView(SEGMENT_ADMIN_PANEL_USER_DETAILS, navigationContent);
         modelAndView.addObject("user", user);
         modelAndView.addObject("roles", Role.values());
         return modelAndView;
