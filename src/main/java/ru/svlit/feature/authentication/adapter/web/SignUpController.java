@@ -1,10 +1,12 @@
 package ru.svlit.feature.authentication.adapter.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.svlit.architecture.annotation.WebAdapter;
 import ru.svlit.core.util.NavigationContent;
 import ru.svlit.core.util.Redirect;
@@ -34,7 +36,7 @@ class SignUpController {
     }
 
     @PostMapping
-    public ModelAndView signUpWithCredentials(final String username, final String password, final String email) {
+    public String signUpWithCredentials(final String username, final String password, final String email, RedirectAttributes redirectAttributes, Model model) {
         final NavigationContent navigationContent = getNavigationContentUseCase.perform(
                 new GetNavigationContentCommand(false)
         );
@@ -42,16 +44,19 @@ class SignUpController {
 
         try {
             initializeSignUpUseCase.signUp(command);
-            return new UnifiedModelAndView(Redirect.to(PATH_SIGN_IN), navigationContent);
+            redirectAttributes.addFlashAttribute("username", username);
+            redirectAttributes.addFlashAttribute("email", email);
+            return Redirect.to(PATH_ACTIVATION);
         } catch (UsernameTakenException e) {
-            return errorAlreadyExists(navigationContent);
+            return errorAlreadyExists(navigationContent, model);
         }
 
     }
 
-    private UnifiedModelAndView errorAlreadyExists(NavigationContent navigationContent) {
+    private String errorAlreadyExists(NavigationContent navigationContent, Model model) {
         final UnifiedModelAndView modelAndView = new UnifiedModelAndView(SEGMENT_SIGN_UP, navigationContent);
         modelAndView.addObject("error_user_exists", true);
-        return modelAndView;
+        model.addAllAttributes(modelAndView.getModel());
+        return PATH_SIGN_UP;
     }
 }
