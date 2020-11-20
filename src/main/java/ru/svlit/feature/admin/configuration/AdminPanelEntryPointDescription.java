@@ -3,7 +3,9 @@ package ru.svlit.feature.admin.configuration;
 import lombok.RequiredArgsConstructor;
 import ru.svlit.architecture.EntryPointDescription;
 import ru.svlit.architecture.annotation.EntryPoint;
-import ru.svlit.feature.authentication.application.port.in.GetCurrentUserUseCase;
+import ru.svlit.core.globalization.Resource;
+import ru.svlit.core.globalization.Resource.FeatureAdminPanelTitleResource;
+import ru.svlit.core.user.application.port.in.GetCurrentUserUseCase;
 import ru.svlit.feature.authentication.domain.User;
 
 import java.util.Optional;
@@ -28,8 +30,8 @@ public class AdminPanelEntryPointDescription implements EntryPointDescription {
     }
 
     @Override
-    public String getTitle() {
-        return "Admin Panel";
+    public Resource getTitle() {
+        return new FeatureAdminPanelTitleResource();
     }
 
     @Override

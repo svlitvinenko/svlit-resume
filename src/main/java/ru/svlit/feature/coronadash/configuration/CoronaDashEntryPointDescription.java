@@ -2,6 +2,8 @@ package ru.svlit.feature.coronadash.configuration;
 
 import ru.svlit.architecture.EntryPointDescription;
 import ru.svlit.architecture.annotation.EntryPoint;
+import ru.svlit.core.globalization.Resource;
+import ru.svlit.core.globalization.Resource.FeatureCovidTitleResource;
 
 import static ru.svlit.feature.coronadash.configuration.CoronaDashConfigurationConstants.PATH_SEGMENT_COVID;
 
@@ -13,8 +15,8 @@ class CoronaDashEntryPointDescription implements EntryPointDescription {
     }
 
     @Override
-    public String getTitle() {
-        return "COVID-19 Dashboard";
+    public Resource getTitle() {
+        return new FeatureCovidTitleResource();
     }
 
     @Override

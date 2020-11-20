@@ -19,15 +19,16 @@ class GetMessageOfTheDayPortImpl implements GetMessageOfTheDayPort {
 
     @Override
     public MessageOfTheDay perform() throws CouldNotFetchQuoteException {
-        final MessageOfTheDay storedMessageOfTheDay = messageOfTheDay;
-        if (storedMessageOfTheDay != null) {
-            return storedMessageOfTheDay;
-        }
-
-        final MessageOfTheDay fetchedMessageOfTheDay = fetchMessageOfTheDay();
-        messageOfTheDay = fetchedMessageOfTheDay;
-
-        return fetchedMessageOfTheDay;
+        return new MessageOfTheDay("T", "T");
+//        final MessageOfTheDay storedMessageOfTheDay = messageOfTheDay;
+//        if (storedMessageOfTheDay != null) {
+//            return storedMessageOfTheDay;
+//        }
+//
+//        final MessageOfTheDay fetchedMessageOfTheDay = fetchMessageOfTheDay();
+//        messageOfTheDay = fetchedMessageOfTheDay;
+//
+//        return fetchedMessageOfTheDay;
     }
 
     private MessageOfTheDay fetchMessageOfTheDay() throws CouldNotFetchQuoteException {

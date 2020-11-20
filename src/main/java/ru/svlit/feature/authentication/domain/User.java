@@ -4,12 +4,14 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.svlit.core.global.configuration.security.Role;
+import ru.svlit.core.globalization.domain.SupportedLocale;
 
 import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
 import static java.util.Collections.emptySet;
+import static ru.svlit.core.globalization.domain.SupportedLocale.EN;
 
 @With
 @Getter
@@ -24,6 +26,7 @@ public class User implements UserDetails {
     private final String password;
     private final Set<Role> roles;
     private final boolean isActive;
+    private final SupportedLocale selectedLocale;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -67,7 +70,8 @@ public class User implements UserDetails {
                 "UFO",
                 UUID.randomUUID().toString(),
                 emptySet(),
-                false
+                false,
+                EN
         );
     }
 }

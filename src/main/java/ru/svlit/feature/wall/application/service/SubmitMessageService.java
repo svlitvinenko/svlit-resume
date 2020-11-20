@@ -2,7 +2,7 @@ package ru.svlit.feature.wall.application.service;
 
 import lombok.RequiredArgsConstructor;
 import ru.svlit.architecture.annotation.UseCase;
-import ru.svlit.feature.authentication.application.port.in.GetCurrentUserUseCase;
+import ru.svlit.core.user.application.port.in.GetCurrentUserUseCase;
 import ru.svlit.feature.authentication.domain.User;
 import ru.svlit.feature.wall.application.model.Message;
 import ru.svlit.feature.wall.application.port.in.SubmitMessageUseCase;

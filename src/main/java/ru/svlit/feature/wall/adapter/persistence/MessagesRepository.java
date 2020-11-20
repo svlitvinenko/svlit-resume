@@ -2,7 +2,7 @@ package ru.svlit.feature.wall.adapter.persistence;
 
 import lombok.RequiredArgsConstructor;
 import ru.svlit.architecture.annotation.PersistenceAdapter;
-import ru.svlit.feature.authentication.application.port.in.FindUserByIdUseCase;
+import ru.svlit.core.user.application.port.in.FindUserByIdUseCase;
 import ru.svlit.feature.authentication.domain.User;
 import ru.svlit.feature.wall.adapter.persistence.converter.MessageDataToDomainConverter;
 import ru.svlit.feature.wall.adapter.persistence.converter.MessageDomainToDataConverter;

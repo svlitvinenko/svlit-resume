@@ -3,7 +3,7 @@ package ru.svlit.feature.authentication.application.service;
 import lombok.RequiredArgsConstructor;
 import ru.svlit.architecture.annotation.UseCase;
 import ru.svlit.feature.authentication.application.port.in.ConfirmSignUpUseCase;
-import ru.svlit.feature.authentication.application.port.in.FindUserByIdUseCase;
+import ru.svlit.core.user.application.port.in.FindUserByIdUseCase;
 import ru.svlit.feature.authentication.application.port.out.ActivateUserPort;
 import ru.svlit.feature.authentication.application.port.out.FindActivationCodePort;
 import ru.svlit.feature.authentication.application.port.out.RemoveActivationCodePort;

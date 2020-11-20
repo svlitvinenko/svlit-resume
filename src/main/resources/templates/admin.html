@@ -9,7 +9,7 @@
 <body>
 
     <div class="page">
-        <div th:replace="fragments/common/header.html :: header(navigationContent=${navigationContent})"></div>
+        <div th:replace="fragments/common/header.html :: header(content=${navigationContent.headerContent})"></div>
 
         <main class="content">
             <div class="container my-5">
@@ -17,7 +17,7 @@
             </div>
         </main>
 
-        <div th:replace="fragments/common/footer.html :: footer"></div>
+        <div th:replace="fragments/common/footer.html :: footer(content=${navigationContent.footerContent})"></div>
     </div>
 
     <div th:insert="fragments/common/scripts.html :: scripts"></div>
