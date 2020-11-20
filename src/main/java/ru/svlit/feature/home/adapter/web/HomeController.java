@@ -2,15 +2,17 @@ package ru.svlit.feature.home.adapter.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import ru.svlit.core.globalization.ResourceManager;
 import ru.svlit.core.util.NavigationContent;
-import ru.svlit.feature.home.adapter.web.converter.HomePageFiller;
+import ru.svlit.core.util.UnifiedModelFiller;
 import ru.svlit.feature.home.application.entity.Achievement;
 import ru.svlit.feature.home.application.entity.MessageOfTheDay;
 import ru.svlit.feature.home.application.port.in.GetAchievementsUseCase;
 import ru.svlit.feature.home.application.port.in.GetMessageOfTheDayUseCase;
+import ru.svlit.feature.home.application.port.in.GetMessageOfTheDayUseCase.CouldNotGetQuoteException;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 
 import java.util.List;
@@ -24,15 +26,23 @@ class HomeController {
     private final GetMessageOfTheDayUseCase getMessageOfTheDayUseCase;
     private final GetNavigationContentUseCase getNavigationContentUseCase;
     private final GetAchievementsUseCase getAchievementsUseCase;
-    private final HomePageFiller homePageFiller;
+    private final ResourceManager resourceManager;
 
     @GetMapping
-    public ModelAndView get() throws GetMessageOfTheDayUseCase.CouldNotGetQuoteException {
+    public String get(Model model) throws CouldNotGetQuoteException {
         final MessageOfTheDay messageOfTheDay = getMessageOfTheDayUseCase.perform();
+        final List<Achievement> achievements = getAchievementsUseCase.perform();
+
         final NavigationContent navigationContent = getNavigationContentUseCase.perform(
                 new GetNavigationContentUseCase.GetNavigationContentCommand(true)
         );
-        final List<Achievement> achievements = getAchievementsUseCase.perform();
-        return homePageFiller.fill(messageOfTheDay, navigationContent, achievements);
+
+        final UnifiedModelFiller filler = new HomePageFiller(
+                navigationContent, resourceManager, messageOfTheDay, achievements
+        );
+
+        filler.fill(model);
+
+        return "home";
     }
 }

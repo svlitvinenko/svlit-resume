@@ -7,11 +7,11 @@ import ru.svlit.core.global.configuration.security.Role;
 import ru.svlit.core.util.NavigationContent;
 import ru.svlit.core.util.Redirect;
 import ru.svlit.core.util.UnifiedModelAndView;
-import ru.svlit.feature.authentication.application.port.in.FindUserByIdUseCase;
-import ru.svlit.feature.authentication.application.port.in.GetAllUsersUseCase;
-import ru.svlit.feature.authentication.application.port.in.RemoveUserByIdUseCase;
-import ru.svlit.feature.authentication.application.port.in.UpdateUserUseCase;
-import ru.svlit.feature.authentication.application.port.in.UpdateUserUseCase.UpdateUserCommand;
+import ru.svlit.core.user.application.port.in.FindUserByIdUseCase;
+import ru.svlit.core.user.application.port.in.GetAllUsersUseCase;
+import ru.svlit.core.user.application.port.in.RemoveUserByIdUseCase;
+import ru.svlit.core.user.application.port.in.UpdateUserUseCase;
+import ru.svlit.core.user.application.port.in.UpdateUserUseCase.UpdateUserCommand;
 import ru.svlit.feature.authentication.domain.User;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase;
 import ru.svlit.feature.home.application.port.in.GetNavigationContentUseCase.GetNavigationContentCommand;
@@ -89,7 +89,8 @@ class AdminPanelController {
                 user.getId(),
                 updatedUsername,
                 updatedEmail,
-                roles
+                roles,
+                user.getSelectedLocale()
         ));
 
         return Redirect.to(PATH_ADMIN_PANEL);

@@ -3,10 +3,25 @@
 <head>
 </head>
 <body>
-<div th:fragment="footer" class="footer">
-    <nav class="navbar navbar-light bg-light">
+<div th:fragment="footer(content)" class="footer">
+    <div class="d-flex p-3 bg-light justify-content-between align-items-center">
         <span class="navbar-text">&copy; All rights reserved</span>
-    </nav>
+
+        <div class="btn-group dropup float-right">
+            <div class="dropdown show">
+                <a class="btn-outline-secondary btn btn-sm dropdown-toggle" href="#" role="button"
+                   id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                   th:text="${content.selectedLocale.name}">
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a th:each="locale : ${content.availableLocales}" class="dropdown-item"
+                       th:text="${locale.name}" th:href="@{{link}?returnTo={returnTo}(link=${locale.link}, returnTo=${#httpServletRequest.requestURI})}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -5,9 +5,9 @@
 </head>
 
 <body>
-<div th:fragment="header (navigationContent)" class="header">
+<div th:fragment="header(content)" class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/"><span class="brand">Sergei Litvinenko</span></a>
+        <a class="navbar-brand" href="/"><span class="brand" th:text="${content.textTitle}"></span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,11 +16,10 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle brand" href="#" id="featuresDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Features
-                    </a>
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       th:text="${content.textFeatures}"></a>
                     <div class="dropdown-menu" aria-labelledby="featuresDropdown">
-                        <div th:each="feature : ${navigationContent.features}">
+                        <div th:each="feature : ${content.features}">
                             <a th:href="${feature.relativeAddress}" th:text="${feature.title}"
                                class="dropdown-item brand"></a>
                         </div>
@@ -29,11 +28,10 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle brand" href="#" id="contactsDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Contact me
-                    </a>
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       th:text="${content.textContacts}"></a>
                     <div class="dropdown-menu" aria-labelledby="contactsDropdown">
-                        <div th:each="contact : ${navigationContent.contacts}">
+                        <div th:each="contact : ${content.contacts}">
                             <a th:href="${contact.socialNetwork.baseUrl + contact.userIdentifier}"
                                class="dropdown-item">
                                 <img th:src="${contact.socialNetwork.iconUrl}" width="24" height="24"/>
@@ -43,25 +41,24 @@
                     </div>
                 </li>
             </ul>
-            <div th:if="${navigationContent.userInfo.class.name == 'ru.svlit.core.util.SignedInUserInfo'}">
-                <div th:insert="::sign-out (username=${navigationContent.userInfo.user.username})"></div>
+            <div th:if="${content.userInfo.class.name == 'ru.svlit.core.util.SignedInUserInfo'}">
+                <div th:insert="::sign-out (username=${content.userInfo.user.username}, label=${content.textSignOut})"></div>
             </div>
 
-            <div th:if="${navigationContent.userInfo.class.name == 'ru.svlit.core.util.GuestUserInfo'}"
-                 th:insert="::sign-in-or-up"></div>
+            <div th:if="${content.userInfo.class.name == 'ru.svlit.core.util.GuestUserInfo'}"
+                 th:insert="::sign-in-or-up(labelSignIn=${content.textSignIn}, labelSignUp=${content.textSignUp})"></div>
         </div>
-
     </nav>
 </div>
 
-<form th:fragment="sign-out (username)" class="form-inline" th:action="@{/logout}" method="post">
+<form th:fragment="sign-out (username, label)" class="form-inline" th:action="@{/logout}" method="post">
     <label th:text="${username}" class="mr-3 brand">User</label>
-    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Log out</button>
+    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" th:text="${label}"></button>
 </form>
 
-<div th:fragment="sign-in-or-up">
-    <a th:href="@{/sign-in}" class="btn btn-outline-secondary" role="button">Sign In</a>
-    <a th:href="@{/sign-up}" class="btn btn-success" role="button">Sign Up</a>
+<div th:fragment="sign-in-or-up(labelSignIn, labelSignUp)">
+    <a th:href="@{/sign-in}" class="btn btn-outline-secondary" role="button" th:text="${labelSignIn}"></a>
+    <a th:href="@{/sign-up}" class="btn btn-success" role="button" th:text="${labelSignUp}"></a>
 </div>
 
 </body>

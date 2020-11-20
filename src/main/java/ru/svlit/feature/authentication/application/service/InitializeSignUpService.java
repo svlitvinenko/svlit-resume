@@ -2,12 +2,12 @@ package ru.svlit.feature.authentication.application.service;
 
 import lombok.RequiredArgsConstructor;
 import ru.svlit.architecture.annotation.UseCase;
+import ru.svlit.core.user.application.port.out.FindUserByUsernamePort;
+import ru.svlit.core.user.application.port.out.StoreUserPort;
 import ru.svlit.feature.authentication.application.port.in.InitializeSignUpUseCase;
-import ru.svlit.feature.authentication.application.port.out.FindUserByUsernamePort;
 import ru.svlit.feature.authentication.application.port.out.SendActivationCodePort;
 import ru.svlit.feature.authentication.application.port.out.SendActivationCodePort.ActivationCommand;
 import ru.svlit.feature.authentication.application.port.out.StoreActivationCodePort;
-import ru.svlit.feature.authentication.application.port.out.StoreUserPort;
 import ru.svlit.feature.authentication.domain.ActivationCode;
 import ru.svlit.feature.authentication.domain.User;
 
@@ -16,6 +16,7 @@ import java.util.Optional;
 import static java.util.Collections.singleton;
 import static java.util.UUID.randomUUID;
 import static ru.svlit.core.global.configuration.security.Role.USER;
+import static ru.svlit.core.globalization.domain.SupportedLocale.getDefaultLocale;
 
 @UseCase
 @RequiredArgsConstructor
@@ -54,7 +55,8 @@ class InitializeSignUpService implements InitializeSignUpUseCase {
                 email,
                 password,
                 singleton(USER),
-                false
+                false,
+                getDefaultLocale()
         );
     }
 }
